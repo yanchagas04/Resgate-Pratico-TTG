@@ -1,6 +1,7 @@
 import imgPrincipal from '../assets/principal.png';
 import CardCurso from '../Elements/CardCursoServico';
 import Header from '../Elements/Header';
+import Footer from '../Elements/Footer';
 
 function Home(){
     return (
@@ -19,7 +20,7 @@ function Home(){
             </div>
             </div>
             </div>
-            
+            <Footer />
         </>
     )
 }
