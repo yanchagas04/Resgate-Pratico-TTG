@@ -9,3 +9,22 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Curso {
+  id    String @id @default(uuid())
+  nome  String
+  descricao String
+  cargaHoraria Int
+}
+
+model Servico {
+  id    String @id @default(uuid())
+  nome String
+  descricao String
+}
+
+model Equipamento {
+  id    String @id @default(uuid())
+  nome String
+  descricao String
+}
