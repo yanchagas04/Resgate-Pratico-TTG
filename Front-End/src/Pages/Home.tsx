@@ -22,9 +22,9 @@ function Home(){
             </div>
             </div>
             <div className="flex flex-row items-center justify-center gap-2.5">
-                <CardDivisao nome="Equipamento" descricao="Conheça nossos equipamentos de proteção individual e coletiva" imagem={imgCurso} link="/curso" />
-                <CardDivisao nome="Capacitações" descricao="Conheça nossos cursos de primeiros socorros" imagem={imgCurso} link="/curso" />
-                <CardDivisao nome="Serviços" descricao="Conheça nossos serviços de manutenção e reparo de equipamentos" imagem={imgCurso} link="/curso" />
+                <CardDivisao nome="Equipamento" descricao="Conheça nossos equipamentos de proteção individual e coletiva" imagem={imgCurso} link="/equipamentos" />
+                <CardDivisao nome="Capacitações" descricao="Conheça nossos cursos de primeiros socorros" imagem={imgCurso} link="/capacitacoes" />
+                <CardDivisao nome="Serviços" descricao="Conheça nossos serviços de manutenção e reparo de equipamentos" imagem={imgCurso} link="/servicos" />
             </div>
         </>
     )
