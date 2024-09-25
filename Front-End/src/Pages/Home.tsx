@@ -1,5 +1,6 @@
 import imgPrincipal from '../assets/principal.png';
 import Header from '../Elements/Header';
+import Footer from '../Elements/Footer';
 
 function Home(){
     return (
@@ -18,7 +19,7 @@ function Home(){
             </div>
             </div>
             </div>
-            
+            <Footer />
         </>
     )
 }
