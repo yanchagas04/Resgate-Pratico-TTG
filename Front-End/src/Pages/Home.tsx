@@ -1,8 +1,5 @@
 import imgPrincipal from '../assets/principal.png';
-import CardCurso from '../Elements/CardCursoServico';
 import Header from '../Elements/Header';
-import CardDivisao from '../Elements/CardDivisao';
-const imgCurso = '../assets/exemploCurso.png';
 
 function Home(){
     return (
@@ -21,11 +18,7 @@ function Home(){
             </div>
             </div>
             </div>
-            <div className="flex flex-row items-center justify-center gap-2.5">
-                <CardDivisao nome="Equipamento" descricao="Conheça nossos equipamentos de proteção individual e coletiva" imagem={imgCurso} link="/equipamentos" />
-                <CardDivisao nome="Capacitações" descricao="Conheça nossos cursos de primeiros socorros" imagem={imgCurso} link="/capacitacoes" />
-                <CardDivisao nome="Serviços" descricao="Conheça nossos serviços de manutenção e reparo de equipamentos" imagem={imgCurso} link="/servicos" />
-            </div>
+            
         </>
     )
 }
