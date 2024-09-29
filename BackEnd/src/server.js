@@ -18,7 +18,7 @@ app.get('/equipamentos', async (req, res) => {
             res.status(404).json({ message: 'Nenhum equipamento encontrado' });
         }
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: "Erro do servidor" });
     }
 });
 
@@ -36,7 +36,10 @@ app.get('/equipamentos/:id', async (req, res) => {
             res.status(404).json({ message: 'Equipamento não encontrado' });
         }
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
     }
 });
 
@@ -51,7 +54,7 @@ app.post('/equipamentos', async (req, res) => {
         if (error instanceof Prisma.PrismaClientValidationError) {
             res.status(400).json({ error: "Os dados enviados são inválidos"});
         }
-        res.status(500).json({ error: error.message, code: error.code });
+        res.status(500).json({ error: "Erro do servidor"});
     }
 });
 
@@ -67,7 +70,7 @@ app.put('/equipamentos/:id', async (req, res) => {
         if (error instanceof Prisma.PrismaClientValidationError) {
             res.status(400).json({ error: "Os dados enviados são inválidos"});
         }
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: "Erro do servidor" });
     }
 });
 
@@ -79,7 +82,10 @@ app.delete('/equipamentos/:id', async (req, res) => {
         });
         res.status(204).send();
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
     }
 });
 
