@@ -11,20 +11,23 @@ datasource db {
 }
 
 model Curso {
-  id    String @id @default(uuid())
-  nome  String
-  descricao String
+  id           String @id @default(uuid())
+  nome         String
+  descricao    String
   cargaHoraria Int
+  linkImagem   String
 }
 
 model Servico {
-  id    String @id @default(uuid())
-  nome String
-  descricao String
+  id         String @id @default(uuid())
+  nome       String
+  descricao  String
+  linkImagem String
 }
 
 model Equipamento {
-  id    String @id @default(uuid())
-  nome String
-  descricao String
+  id         String @id @default(uuid())
+  nome       String
+  descricao  String
+  linkImagem String
 }
