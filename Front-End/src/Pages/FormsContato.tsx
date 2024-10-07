@@ -13,11 +13,11 @@ function FormsContato() {
                     <h1 className='lg:hidden text-gray-950 text-xl'>Formulário de Contato</h1>
                     <div className='flex flex-col gap-4 w-full'>
                         <label htmlFor="nome" className=''>Nome:</label>
-                        <input type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2' />
+                        <input required={true}  type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2' />
                         <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder='seuemail@email.com' className='bg-gray-100 border border-gray-300 rounded-md p-2' />
-                        <label htmlFor="telefon">Telefone para contato:</label>
-                        <input type="text" id="email" placeholder='(xx) 9xxxx-xxxx' name="email" className='bg-gray-100 border border-gray-300 rounded-md p-2' />
+                        <input required={true} type="email" id="email" name="email" placeholder='seuemail@email.com' className='bg-gray-100 border border-gray-300 rounded-md p-2' />
+                        <label htmlFor="telefone">Telefone para contato:</label>
+                        <input type="text" id="telefone" placeholder='(xx)9xxxxxxxx' pattern='\([0-9]{2}\)9[0-9]{4}[0-9]{4}' name="telefone" className='bg-gray-100 border border-gray-300 rounded-md p-2' />
                     </div>
                     <div className='flex flex-col w-full'>
                         <h3>Cursos selecionados:</h3>
