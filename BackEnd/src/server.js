@@ -18,7 +18,7 @@ app.get('/equipamentos', async (req, res) => {
             res.status(404).json({ message: 'Nenhum equipamento encontrado' });
         }
     } catch (error) {
-        res.status(500).json({ error: "Erro do servidor" });
+        res.status(500).json({ error: error });
     }
 });
 
