@@ -18,7 +18,7 @@ app.get('/equipamentos', async (req, res) => {
             res.status(404).json({ message: 'Nenhum equipamento encontrado' });
         }
     } catch (error) {
-        res.status(500).json({ error: "Erro do servidor" });
+        res.status(500).json({ error: error });
     }
 });
 
@@ -89,7 +89,164 @@ app.delete('/equipamentos/:id', async (req, res) => {
     }
 });
 
+//GET ALL - Servicos
+app.get('/servicos', async (req, res) => {
+    try {
+        const servicos = await prisma.servico.findMany();
+        if (servicos.length > 0) {
+            res.status(200).json(servicos);
+        } else {
+            res.status(404).json({ message: 'Nenhum servico encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
 
+//GET BY ID - Servicos
+app.get('/servicos/:id', async (req, res) => {
+    try {
+        const servico = await prisma.servico.findUnique({
+            where: {
+                id: req.params.id
+            }
+        });
+        if (servico) {
+            res.status(200).json(servico);
+        } else {
+            res.status(404).json({ message: 'Servico não encontrado' });
+        }
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
 
+//POST - Servicos
+app.post('/servicos', async (req, res) => {
+    try {
+        const servico = await prisma.servico.create({
+            data: req.body
+        });
+        res.status(201).json(servico);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+});
 
+//PUT - Servicos
+app.put('/servicos/:id', async (req, res) => {
+    try {
+        const servico = await prisma.servico.update({
+            where: { id: req.params.id },
+            data: req.body
+        });
+        res.status(200).json(servico);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
 
+//DELETE - Servicos
+app.delete('/servicos/:id', async (req, res) => {
+    try {
+        await prisma.servico.delete({
+            where: { id: req.params.id }
+        });
+        res.status(204).send();
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+});
+
+//GET ALL - CAPACITAÇÕES
+app.get('/capacitacoes', async (req, res) => {
+    try {
+        const capacitacoes = await prisma.capacitacao.findMany();
+        if (capacitacoes.length > 0) {
+            res.status(200).json(capacitacoes);
+        } else {
+            res.status(404).json({ message: 'Nenhuma capacitação encontrada' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
+
+//GET BY ID - CAPACITAÇÕES
+app.get('/capacitacoes/:id', async (req, res) => {
+    try {
+        const capacitacao = await prisma.capacitacao.findUnique({
+            where: {
+                id: req.params.id
+            }
+        });
+        if (capacitacao) {
+            res.status(200).json(capacitacao);
+        } else {
+            res.status(404).json({ message: 'Capacitação não encontrada' });
+        }
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
+
+//POST - CAPACITAÇÕES
+app.post('/capacitacoes', async (req, res) => {
+    try {
+        const capacitacao = await prisma.capacitacao.create({
+            data: req.body
+        });
+        res.status(201).json(capacitacao);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+});
+
+//PUT - CAPACITAÇÕES
+app.put('/capacitacoes/:id', async (req, res) => {
+    try {
+        const capacitacao = await prisma.capacitacao.update({
+            where: { id: req.params.id },
+            data: req.body
+        });
+        res.status(200).json(capacitacao);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
+
+//DELETE - CAPACITAÇÕES
+app.delete('/capacitacoes/:id', async (req, res) => {
+    try {
+        await prisma.capacitacao.delete({
+            where: { id: req.params.id }
+        });
+        res.status(204).send();
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+});
