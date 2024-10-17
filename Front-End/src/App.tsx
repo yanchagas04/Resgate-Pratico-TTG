@@ -5,12 +5,13 @@ import PaginaServicos from './Pages/PaginaServicos'
 import Footer from './Elements/Footer'
 import FormsContato from './Pages/FormsContato'
 import CardCSE from './Elements/CardCSE'
+import Admin from './Pages/Admin'
 
 
 function App() {
   return (
     <>
-      <Home />
+      <Admin />
     </>
   )
 }
