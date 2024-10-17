@@ -3,6 +3,10 @@ import Header from '../Elements/Header';
 import Footer from '../Elements/Footer';
 import CardDivisao from '../Elements/CardDivisao';
 const imgCurso = '../assets/exemploCurso.png';
+import CarroselOficial from '../Elements/Carrosel';
+import Sobre from '../Elements/Sobre';
+import logo from '../assets/logoVector.png';
+import Feedbacks from '../Elements/Feedbacks';
 
 
 function Home(){
@@ -47,7 +51,40 @@ function Home(){
                 link="/servicos"
             />
             </div>
-            a
+            
+
+            {/* Sobre a Empresa */}
+            <Sobre />
+
+            {/* carrosel capacitações */}
+            <div className="text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide">
+                <p>PRINCIPAIS CAPACITAÇÕES</p>
+                <div className="flex items-center justify-center">
+                <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
+                <img src={logo} alt="Logo" className="h-12 w-12" />
+                <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
+                </div>
+                <p className="text-[#666666] font-normal text-lg">Conheça as principais capacitações que oferecemos!</p>
+            </div>
+            <CarroselOficial />
+
+            {/* carrosel servicos */}
+            <div className="text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide">
+                <p>PRINCIPAIS SERVIÇOS</p>
+                <div className="flex items-center justify-center">
+                <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
+                <img src={logo} alt="Logo" className="h-12 w-12" />
+                <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
+                </div>
+                <p className="text-[#666666] font-normal text-lg">Conheça os principais serviços que oferecemos!</p>
+            </div>
+            <CarroselOficial />
+
+            {/* feedbacks */}
+            <Feedbacks />
+
+            
+            {/* Footer */}
             <Footer />
             
             
