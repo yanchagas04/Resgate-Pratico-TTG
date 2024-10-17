@@ -21,10 +21,9 @@ const Feedbacks = () => {
       <div className="flex flex-wrap justify-center items-center gap-6">
         {/* Card 1 */}
         <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative">
-          {/* Imagem da aspas no canto superior esquerdo */}
           <div className="absolute top-6 left-6 text-[#02476f] font-['BARRIO'] text-8xl">”</div>
           <div className="bg-gray-300 p-6 pt-16">
-            <p className="text-xl text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Ótimo espaço de treinamento, conhecimento e prática, bom atendimento"</p>
+            <p className="text-xl text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Ótimo espaço de treinamento, conhecimento e prática, bom atendimento."</p>
           </div>
           <div className="bg-neutral-800 p-4 text-center">
             <p className="text-xl text-[#d8d8d8] font-normal font-['Lexend Peta']">Ronaldo Nascimento</p>
@@ -34,7 +33,6 @@ const Feedbacks = () => {
 
         {/* Card 2 */}
         <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative">
-          {/* Imagem da aspas no canto superior esquerdo */}
           <div className="absolute top-6 left-6 text-[#02476f] font-['BARRIO'] text-8xl">”</div>
           <div className="bg-gray-300 p-6 pt-16">
             <p className="text-xl text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Excelente centro de treinamento e com instrutores de excelência com informações atualizadas na área de segurança e emergência."</p>
@@ -47,7 +45,6 @@ const Feedbacks = () => {
 
         {/* Card 3 */}
         <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative">
-          {/* Imagem da aspas no canto superior esquerdo */}
           <div className="absolute top-6 left-6 text-[#02476f] font-['BARRIO'] text-8xl">”</div>
           <div className="bg-gray-300 p-6 pt-16">
             <p className="text-xl text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Local ótimo para treinamento de brigada de incêndio. Recomendo."</p>

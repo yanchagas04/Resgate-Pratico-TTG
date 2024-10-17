@@ -18,7 +18,7 @@ const cards = [
   { nome: 'Curso 6', descricao: 'Descrição do curso 6', imagem: imgCurso },
 ];
 
-// Customização da seta próxima
+// prox seta
 function SampleNextArrow(props: any) {
   const { onClick } = props;
   return (
@@ -32,7 +32,7 @@ function SampleNextArrow(props: any) {
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        className="w-8 h-8 text-black" // Tamanho e cor da seta preta
+        className="w-8 h-8 text-black" 
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
       </svg>
@@ -40,7 +40,7 @@ function SampleNextArrow(props: any) {
   );
 }
 
-// Customização da seta anterior
+// seta anterior
 function SamplePrevArrow(props: any) {
   const { onClick } = props;
   return (
@@ -54,7 +54,7 @@ function SamplePrevArrow(props: any) {
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        className="w-8 h-8 text-black" // Tamanho e cor da seta preta
+        className="w-8 h-8 text-black" 
       >
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
       </svg>
@@ -78,8 +78,7 @@ function CarroselOficial() {
           slidesToScroll: 1,
           infinite: false,
           dots: true,
-          //centerMode: true, // Adiciona o modo de centralização para uma melhor experiência em telas pequenas
-          //centerPadding: '60px',
+        
           
         }
       },
@@ -88,8 +87,8 @@ function CarroselOficial() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: true, // Adiciona o modo de centralização para uma melhor experiência em telas pequenas
-          centerPadding: '60px', // Padding para centralizar o card
+          centerMode: true, 
+          centerPadding: '60px', 
           
         }
       }
