@@ -30,3 +30,10 @@ model Equipamento {
   descricao  String
   linkImagem String
 }
+
+model AdminUsers {
+  id    String @id @default(uuid())
+  nome  String
+  cpf   String @unique
+  senha String
+}

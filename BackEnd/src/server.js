@@ -250,3 +250,87 @@ app.delete('/capacitacoes/:id', async (req, res) => {
         res.status(500).json({ error: "Erro do servidor"});
     }
 });
+
+//GET ALL - USERS
+app.get('/users', async (req, res) => {
+    try {
+        const users = await prisma.user.findMany();
+        if (users.length > 0) {
+            res.status(200).json(users);
+        } else {
+            res.status(404).json({ message: 'Nenhum usuário encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
+
+//GET BY ID - USERS
+app.get('/users/:id', async (req, res) => {
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: req.params.id
+            }
+        });
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ message: 'Usário não encontrado' });
+        }
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
+
+//POST USERS
+app.post('/users', async (req, res) => {
+    try {
+        const user = await prisma.user.create({
+            data: req.body
+        });
+        res.status(201).json(user);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        if (erro instanceof Prisma.PrismaClientKnownRequestError) {
+            res.status(400).json({ error: "O usuário já está registrado no sistema!"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+})
+
+//PUT - USERS
+app.put('/users/:id', async (req, res) => {
+    try {
+        const user = await prisma.user.update({
+            where: { id: req.params.id },
+            data: req.body
+        });
+        res.status(200).json(user);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+});
+
+//DELETE - USERS
+app.delete('/users/:id', async (req, res) => {
+    try {
+        await prisma.user.delete({
+            where: { id: req.params.id }
+        });        
+        res.status(204).send();
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+});
