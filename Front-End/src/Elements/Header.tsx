@@ -2,7 +2,7 @@ import logoPrincipal from '../assets/LogoVector.png';
 
 function Header() {
     return (
-        <header className="Header">
+        <header className="Header w-full">
         <div className="h-auto px-5 w-full bg-[#a42323] flex flex-col md:flex-row justify-between items-center gap-4 md:gap-[50px] py-4">
         <img className="w-12 h-12" src={logoPrincipal} alt="Logo" />
 
