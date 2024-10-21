@@ -5,7 +5,6 @@ import PaginaServicos from './Pages/PaginaServicos'
 import Footer from './Elements/Footer'
 import FormsContato from './Pages/FormsContato'
 
-
 function App() {
   return (
     <>

@@ -1,5 +1,6 @@
 import Logo from '../assets/LogoVector.png';
 import IconeTelefone from '../assets/IconeTelefone.png';
+import NavLink from 'react-router-dom';
 
 function FormsContato() {
     const cursos = [];
@@ -41,6 +42,7 @@ function FormsContato() {
                     <div className='flex flex-row gap-1 items-center h-fit'>
                         <img src={IconeTelefone} alt="Ícone de Telefone" className='w-6'/>
                         <p className='text-gray-950 h-fit'>(71)99161-7848</p>
+                        <NavLink to="/" className="text-gray-950 h-fit">HOME</NavLink>
                     </div>
                 </nav>
             </div>
