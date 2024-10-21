@@ -4,7 +4,7 @@ import icone from '../assets/certinho.png';
 import imgTeste from '../assets/imgTeste.png';
 
 
-function PaginaCursos(){
+function PaginaCursos() {
     return (
         <>
             <Header />
