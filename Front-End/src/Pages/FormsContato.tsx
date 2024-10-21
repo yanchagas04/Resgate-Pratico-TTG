@@ -1,6 +1,6 @@
 import Logo from '../assets/LogoVector.png';
 import IconeTelefone from '../assets/IconeTelefone.png';
-import NavLink from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function FormsContato() {
     const cursos = [];
@@ -37,12 +37,13 @@ function FormsContato() {
             </div>
             <div>
                 <nav className="hidden h-full lg:flex lg:flex-col lg:min-w-[256px] w-2/6 lg:max-w-96 border-r-2 items-center justify-center gap-4 p-4">
-                    <img src={Logo} alt="Logotipo" className="w-48" />
+                    <NavLink to="/">
+                        <img src={Logo} alt="Logotipo" className="w-48" />
+                    </NavLink>
                     <h1 className="text-xl text-gray-950 h-fit">Formulário de Contato</h1>
                     <div className='flex flex-row gap-1 items-center h-fit'>
                         <img src={IconeTelefone} alt="Ícone de Telefone" className='w-6'/>
-                        <p className='text-gray-950 h-fit'>(71)99161-7848</p>
-                        <NavLink to="/" className="text-gray-950 h-fit">HOME</NavLink>
+                        <p className='text-gray-950 h-fit'>(71)99161-7848</p>  
                     </div>
                 </nav>
             </div>
