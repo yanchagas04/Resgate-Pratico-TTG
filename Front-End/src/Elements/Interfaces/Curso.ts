@@ -1,9 +1,9 @@
-interface CursoProps {
+type Curso = {
+    id: string;
     nome: string;
     descricao: string;
     imagem: string;
     aprendizados: string[];
-    id: string;
 }
 
-export default CursoProps
+export default Curso;

@@ -1,8 +1,8 @@
-interface EquipamentoProps {
-    nome: string
-    descricao: string
-    imagem: string
+type Equipamento = {
+    nome: string,
+    descricao: string,
+    imagem: string,
     id: string
 }
 
-export default EquipamentoProps;
+export default Equipamento;

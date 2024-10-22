@@ -1,9 +1,9 @@
-interface ServicoProps {
+type Servico = {
+    id: string,
     nome: string,
     descricao: string,
     imagem: string,
     beneficios: string[],
-    id: string
 }
 
-export default ServicoProps
+export default Servico;

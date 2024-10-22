@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
-import CursoProps from '../Elements/Interfaces/Cursos';
+import CursoProps from '../Elements/Interfaces/Curso';
 import icone from '../assets/certinho.png';
 import imgTeste from '../assets/imgTeste.png';
 

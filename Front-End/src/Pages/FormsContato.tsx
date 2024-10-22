@@ -10,7 +10,7 @@ function FormsContato() {
         <div className="flex flex-col-reverse lg:flex-row-reverse w-full min-h-screen font-[Inter] transition-all duration-150 ease-in">
             <div className="flex w-full bg-slate-100 items-center justify-center py-8">
                 <form className='min-w-96 w-3/4 h-fit flex flex-col justify-center items-center bg-white drop-shadow-lg rounded-lg p-4 gap-4'>
-                    <NavLink to="/">
+                    <NavLink to="/" className="lg:hidden">
                         <img src={Logo} alt="Logotipo" className="w-48" />
                     </NavLink>
                     <h1 className='lg:hidden text-gray-950 text-xl'>Formulário de Contato</h1>

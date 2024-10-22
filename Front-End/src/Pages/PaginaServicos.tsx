@@ -1,6 +1,6 @@
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
-import ServicoProps from '../Elements/Interfaces/Serivco';
+import ServicoProps from '../Elements/Interfaces/Servico';
 import icone from '../assets/certinho.png';
 import imgTeste from '../assets/imgTeste.png';
 
