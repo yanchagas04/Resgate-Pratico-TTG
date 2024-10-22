@@ -8,12 +8,17 @@ import imgTeste from '../assets/imgTeste.png';
 function PaginaCursos() {
     const curso = {} as CursoProps;  //realizar o fetch aq
     const { id } = useParams();
+
+function PaginaCursos(){
     return (
         <div className='w-full min-h-screen'>
             <Header />
             <div className="h-full pt-[50px] flex flex-col justify-center items-center gap-6 md:px-0">
             <div className="h-full self-stretch px-[25px] bg-white rounded-[10px] flex-col md:flex-row justify-center items-center gap-[50px] inline-flex">
             <div className="h-full grow shrink basis-0 self-stretch flex-col justify-center items-start gap-[25px] inline-flex">
+            <div className="pt-[50px] flex flex-col justify-center items-center gap-6 px-4 md:px-0">
+            <div className="self-stretch px-[25px] bg-white rounded-[10px] flex-col md:flex-row justify-center items-center gap-[50px] inline-flex">
+            <div className="grow shrink basis-0 self-stretch flex-col justify-center items-start gap-[25px] inline-flex">
             <div className="text-black text-[32px] font-semibold font-['Inter'] tracking-wide">NOME DO CURSO</div>
             <div className="self-stretch text-justify text-black text-base font-normal font-['Inter'] tracking-tight">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
              <div className="self-stretch text-justify">
@@ -34,6 +39,9 @@ function PaginaCursos() {
         <div className="w-full bg-[#a42323] h-full p-6 flex flex-col gap-4">
             <h2 className="text-white text-2xl font-semibold h-fit">O que você aprenderá?</h2>
             <ul className="flex flex-col gap-4 h-fit">
+        <div className="w-full bg-[#a42323] p-6 flex flex-col gap-4">
+            <h2 className="text-white text-2xl font-semibold">O que você aprenderá?</h2>
+            <ul className="flex flex-col gap-4">
                 <li className="text-white">
                 <strong className="font-bold">Gerenciamento de tempo:</strong> Aprender a organizar tarefas, definir prioridades e cumprir prazos é essencial para o sucesso em qualquer área.
                 </li>
