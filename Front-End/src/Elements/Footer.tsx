@@ -6,7 +6,7 @@ import LogoLogo from '../assets/logoVector.png';
 function Footer() { 
     return (
         
-<footer className="w-full font-['Inter'] bg-neutral-800 p-6">
+<footer className="w-full h-full font-['Inter'] bg-neutral-800 p-6">
      {/* Container principal centralizado */}
   <div className="max-w-7xl mx-auto flex flex-col justify-center items-center text-white">
     

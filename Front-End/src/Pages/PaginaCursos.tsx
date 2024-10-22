@@ -1,13 +1,21 @@
+import { useParams } from 'react-router-dom';
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
+import CursoProps from '../Elements/Interfaces/Curso';
 import icone from '../assets/certinho.png';
 import imgTeste from '../assets/imgTeste.png';
 
+function PaginaCursos() {
+    const curso = {} as CursoProps;  //realizar o fetch aq
+    const { id } = useParams();
 
 function PaginaCursos(){
     return (
-        <>
+        <div className='w-full min-h-screen'>
             <Header />
+            <div className="h-full pt-[50px] flex flex-col justify-center items-center gap-6 md:px-0">
+            <div className="h-full self-stretch px-[25px] bg-white rounded-[10px] flex-col md:flex-row justify-center items-center gap-[50px] inline-flex">
+            <div className="h-full grow shrink basis-0 self-stretch flex-col justify-center items-start gap-[25px] inline-flex">
             <div className="pt-[50px] flex flex-col justify-center items-center gap-6 px-4 md:px-0">
             <div className="self-stretch px-[25px] bg-white rounded-[10px] flex-col md:flex-row justify-center items-center gap-[50px] inline-flex">
             <div className="grow shrink basis-0 self-stretch flex-col justify-center items-start gap-[25px] inline-flex">
@@ -28,6 +36,9 @@ function PaginaCursos(){
         </div>
     </div>
         {/* Segunda Seção - O que você aprenderá */}
+        <div className="w-full bg-[#a42323] h-full p-6 flex flex-col gap-4">
+            <h2 className="text-white text-2xl font-semibold h-fit">O que você aprenderá?</h2>
+            <ul className="flex flex-col gap-4 h-fit">
         <div className="w-full bg-[#a42323] p-6 flex flex-col gap-4">
             <h2 className="text-white text-2xl font-semibold">O que você aprenderá?</h2>
             <ul className="flex flex-col gap-4">
@@ -51,7 +62,7 @@ function PaginaCursos(){
             </div>
             <Footer />
         
-        </>
+        </div>
     )
 }
 
