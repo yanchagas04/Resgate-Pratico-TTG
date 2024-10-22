@@ -40,32 +40,28 @@ function Footer() {
       
       {/* Menu */}
       <div className="text-left">
-        <h4 className="text-lg font-bold mb-2">Menu:</h4>
-        <ul>
+        <h4 className="text-xl font-bold mb-2">Menu:</h4>
+        
           <li><a href="#">Home</a></li>
           <li><a href="#">Sobre</a></li>
           <li><a href="#">Capacitações</a></li>
           <li><a href="#">Serviços</a></li>
           <li><a href="#">E-book</a></li>
           <li><a href="#">Contato</a></li>
-        </ul>
+        
       </div>
 
       {/* Endereço */}
       <div className="text-left">
-        <h4 className="text-lg font-bold mb-2">Endereço:</h4>
-        <ul>
+        <h4 className="text-xl font-bold mb-2">Endereço:</h4>
           <li className="underline">Rua Francisca Garcez Montenegro<br/>Montenegro - Camaçari, BA, 42812-180</li>
-        </ul>
       </div>
 
       {/* Contato */}
       <div className="text-left">
-        <h4 className="text-lg font-bold mb-2">Contato:</h4>
-        <ul>
+        <h4 className="text-xl font-bold mb-2">Contato:</h4>
           <li className="underline font-bold">(71) 3016-1787</li>
           <li>resgatepratico@gmail.com</li>
-        </ul>
       </div>
     </div>
 
