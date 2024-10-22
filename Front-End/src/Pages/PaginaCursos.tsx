@@ -1,10 +1,11 @@
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
+import CursoProps from '../Elements/Interfaces/Cursos';
 import icone from '../assets/certinho.png';
 import imgTeste from '../assets/imgTeste.png';
 
-
-function PaginaCursos() {
+function PaginaCursos({id}: {id: any}) {
+    const curso = {} as CursoProps;  //realizar o fetch aq
     return (
         <>
             <Header />
