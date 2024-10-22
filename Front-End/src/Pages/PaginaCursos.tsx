@@ -34,7 +34,6 @@ function PaginaCursos(){
         <div className="w-full bg-[#a42323] h-full p-6 flex flex-col gap-4">
             <h2 className="text-white text-2xl font-semibold h-fit">O que você aprenderá?</h2>
         <div className="w-full bg-[#a42323] p-6 flex flex-col gap-4">
-            <h2 className="text-white text-2xl font-semibold">O que você aprenderá?</h2>
             <ul className="flex flex-col gap-4">
                 <li className="text-white">
                 <strong className="font-bold">Gerenciamento de tempo:</strong> Aprender a organizar tarefas, definir prioridades e cumprir prazos é essencial para o sucesso em qualquer área.

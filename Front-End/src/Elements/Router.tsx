@@ -1,13 +1,9 @@
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from '../Pages/Home';
 import PaginaGeralCursos from '../Pages/PaginaGeralCursos';
 import PaginaGeralServicos from '../Pages/PaginaGeralServicos';
 import FormsContato from '../Pages/FormsContato';
 import Admin from '../Pages/Admin';
-import { createContext, useContext, useState } from 'react';
-import CursoProps from './Interfaces/Curso';
-import ServicoProps from './Interfaces/Servico';
-import EquipamentoProps from './Interfaces/Equipamento';
 import PaginaCursos from '../Pages/PaginaCursos';
 import PaginaServicos from '../Pages/PaginaServicos';
 import PaginaEquipamentos from '../Pages/PaginaEquipamentos';
