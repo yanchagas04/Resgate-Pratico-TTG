@@ -4,16 +4,16 @@ import ServicoProps from '../Elements/Interfaces/Serivco';
 import icone from '../assets/certinho.png';
 import imgTeste from '../assets/imgTeste.png';
 
-function PaginaServicos(id: string) {
+function PaginaServicos() {
     const servico = {} as ServicoProps; //realizar o fetch aq
     return (
-        <>
+        <div className='w-full min-h-screen flex flex-col'>
             <Header />
-            <div className="min-h-screen pt-[50px] flex flex-col justify-center items-center gap-6 px-4 md:px-0">
-            <div className="self-stretch px-[25px] bg-white rounded-[10px] flex-col md:flex-row justify-center items-center gap-[50px] inline-flex">
-            <div className="grow shrink basis-0 self-stretch flex-col justify-center items-start gap-[25px] inline-flex">
-            <div className="text-black text-[32px] font-semibold font-['Inter'] tracking-wide">NOME DO SERVIÇO</div>
-            <div className="self-stretch text-justify text-black text-base font-normal font-['Inter'] tracking-tight">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+            <div className="h-full pt-[50px] flex flex-col justify-center items-center gap-6 md:px-0">
+            <div className="h-full self-stretch px-[25px] bg-white rounded-[10px] flex flex-col md:flex-row justify-center items-center gap-[50px]">
+            <div className="h-full grow shrink basis-0 self-stretch flex-col justify-center items-start gap-[25px] inline-flex">
+            <div className="text-black text-[32px] font-semibold font-['Inter'] tracking-wide h-fit">NOME DO SERVIÇO</div>
+            <div className="self-stretch text-justify text-black text-base font-normal font-['Inter'] tracking-tight h-full">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
              <div className="self-stretch text-justify">
                 </div> 
             </div>
@@ -50,7 +50,7 @@ function PaginaServicos(id: string) {
             </div>
             <Footer />
         
-        </>
+        </div>
     )
 }
 

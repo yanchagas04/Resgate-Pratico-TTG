@@ -9,40 +9,30 @@ import CursoProps from './Interfaces/Cursos';
 import ServicoProps from './Interfaces/Serivco';
 import EquipamentoProps from './Interfaces/Equipamento';
 import PaginaCursos from '../Pages/PaginaCursos';
-
-const [cursos, setCursos] = useState([] as CursoProps[]);
-const [servicos, setServicos] = useState([] as ServicoProps[]);
-const [equipamentos, setEquipamentos] = useState([] as EquipamentoProps[]);
-
-const cursosContext = createContext({cursos: cursos, setCursos: setCursos});
-const servicosContext = createContext({servicos: servicos, setServicos: setServicos});
-const equipamentosContext = createContext({equipamentos: equipamentos, setEquipamentos: setEquipamentos});
-
-// const PaginaCursosR = () => {
-//     const id = useParams();
-//     return (
-//         <PaginaCursos id={id} />
-//     )
-// }
-
-// const PaginaServicosR = () => {
-//     const id = useParams();
-//     return (
-//         <PaginaCursos id={id} />
-//     )
-// }
+import PaginaServicos from '../Pages/PaginaServicos';
+import PaginaEquipamentos from '../Pages/PaginaEquipamentos';
+import PaginaGeralEquipamentos from '../Pages/PaginaGeralEquipamentos';
 
 function Router() {
+    const [cursos, setCursos] = useState([] as CursoProps[]);
+    const [servicos, setServicos] = useState([] as ServicoProps[]);
+    const [equipamentos, setEquipamentos] = useState([] as EquipamentoProps[]);
+
+    const cursosContext = createContext({cursos: cursos, setCursos: setCursos});
+    const servicosContext = createContext({servicos: servicos, setServicos: setServicos});
+    const equipamentosContext = createContext({equipamentos: equipamentos, setEquipamentos: setEquipamentos});
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/cursos" element={<PaginaGeralCursos />} />
                 <Route path="/servicos" element={<PaginaGeralServicos />} />
+                <Route path="/equipamentos" element={<PaginaGeralEquipamentos />} />
                 <Route path="/contato" element={<FormsContato />} />
                 <Route path="/admin" element={<Admin />} />
-                {/* <Route path="/curso/:id" element={<PaginaCursosR />} />
-                <Route path="/servico.:id" element={<PaginaServicosR />} /> */}
+                <Route path="/curso/:id" element={<PaginaCursos/>} />
+                <Route path="/servico/:id" element={<PaginaServicos/>} />
+                <Route path="/equipamento/:id" element={<PaginaEquipamentos />} />
             </Routes>
         </BrowserRouter>
     )

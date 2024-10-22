@@ -15,13 +15,13 @@ function PaginaGeralServicos(){
                 <h1 className='text-gray-950 font-[Inter] text-2xl p-2 font-bold'>SERVIÇOS</h1>
                 <div className='flex flex-wrap gap-4 justify-center items-center py-2 px-4'>
 
-                <CardCSE nome="Serviço 1" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico}/>
-                <CardCSE nome="Serviço 2" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico}/>
-                <CardCSE nome="Serviço 3" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico}/>
-                <CardCSE nome="Serviço 4" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico}/>
-                <CardCSE nome="Serviço 5" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico}/>
-                <CardCSE nome="Serviço 6" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico}/>
-                <CardCSE nome="Serviço 7" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico}/>
+                <CardCSE id="0" nome="Serviço 1" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico} tipo="S"/>
+                <CardCSE id="0" nome="Serviço 2" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico} tipo="S"/>
+                <CardCSE id="0" nome="Serviço 3" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico} tipo="S"/>
+                <CardCSE id="0" nome="Serviço 4" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico} tipo="S"/>
+                <CardCSE id="0" nome="Serviço 5" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico} tipo="S"/>
+                <CardCSE id="0" nome="Serviço 6" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico} tipo="S"/>
+                <CardCSE id="0" nome="Serviço 7" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoServico} tipo="S"/>
 
                 </div>
             <Footer />
