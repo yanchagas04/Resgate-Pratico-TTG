@@ -4,9 +4,11 @@ import CardCSE from '../Elements/CardCSE';
 import icone from '../assets/certinho.png';
 import FotoDoCurso from '../assets/FotoDoCurso.png';
 import imgTeste from '../assets/imgTeste.png';
+import { pegarCursos } from '../api/cursosAPI';
 
 
 function PaginaGeralCursos(){
+    pegarCursos();
     return (
         <>
             

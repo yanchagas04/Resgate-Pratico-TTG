@@ -3,10 +3,12 @@ const app = express();
 const PORT = 3000;
 const {PrismaClient, Prisma} = require('@prisma/client');
 const prisma = new PrismaClient();
+const cors = require("cors");
 
 app.listen(PORT, function () {
     console.log("Server is running on port ".concat(PORT));
 });
+app.use(cors()) //trocar depois pra o endereço correto
 
 //GET ALL - Equipamentos
 app.get('/equipamentos', async (req, res) => {
