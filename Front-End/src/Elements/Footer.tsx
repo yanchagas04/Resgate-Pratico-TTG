@@ -11,22 +11,22 @@ function Footer() {
   <div className="max-w-7xl mx-auto flex flex-col justify-center items-center text-white">
     
     {/* Seção de Redes Sociais */}
-    <div className="flex justify-center items-center space-x-8 mb-6">
-      <div className="flex items-center gap-4">
-        <img className="w-11 h-[38px]" src={InstaLogo} alt="Instagram" />
-        <a href="https://www.instagram.com/ctresgatepraticoba/" target="_blank" className="text-lg font-bold">
+    <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center mb-6 gap-4">
+      <div className="flex gap-4">
+        <img className="w-11 h-[38px] items-start" src={InstaLogo} alt="Instagram" />
+        <a href="https://www.instagram.com/ctresgatepraticoba/" target="_blank" className="flex flex-col text-lg font-bold w-full items-center justify-center">
           Instagram
         </a>
       </div>
-      <div className="flex items-center gap-4">
-        <img className="w-[39px] h-[39px]" src={LinkLogo} alt="Linkedin" />
-        <a href="https://br.linkedin.com/company/resgate-pr%C3%A1tico" target="_blank" className="text-lg font-bold">
+      <div className="flex gap-4 items-center">
+        <img className="w-11 aspect-square" src={LinkLogo} alt="Linkedin" />
+        <a href="https://br.linkedin.com/company/resgate-pr%C3%A1tico" target="_blank" className="flex text-lg font-bold items-center justify-center">
           Linkedin
         </a>
       </div>
-      <div className="flex items-center gap-4">
-        <img className="w-6 h-9" src={FacebookLogo} alt="Facebook" />
-        <a href="https://www.facebook.com/resgatepraticoba/" target="_blank" className="text-lg font-bold">
+      <div className="flex gap-4">
+        <img className="w-11 aspect-[2/3]" src={FacebookLogo} alt="Facebook" />
+        <a href="https://www.facebook.com/resgatepraticoba/" target="_blank" className="flex text-lg font-bold items-center justify-center">
           Facebook
         </a>
       </div>

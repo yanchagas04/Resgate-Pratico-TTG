@@ -10,22 +10,20 @@ datasource db {
 }
 
 model Capacitacao {
-  id            String      @id @default(uuid())
-  nome          String
-  descricao     String
-  aprendizados  Aprendizado @relation(fields: [aprendizadoId], references: [id])
-  aprendizadoId String
-  cargaHoraria  Int
-  linkImagem    String
+  id           String        @id @default(uuid())
+  nome         String
+  descricao    String
+  aprendizados Aprendizado[]
+  cargaHoraria Int
+  linkImagem   String
 }
 
 model Servico {
-  id          String    @id @default(uuid())
-  nome        String
-  descricao   String
-  beneficios  Beneficio @relation(fields: [beneficioId], references: [id])
-  beneficioId String
-  linkImagem  String
+  id         String      @id @default(uuid())
+  nome       String
+  descricao  String
+  beneficios Beneficio[]
+  linkImagem String
 }
 
 model Equipamento {
@@ -43,13 +41,15 @@ model AdminUsers {
 }
 
 model Aprendizado {
-  id          String        @id @default(uuid())
-  texto       String
-  Capacitacao Capacitacao[]
+  id            String      @id @default(uuid())
+  texto         String
+  capacitacaoId String
+  Capacitacao   Capacitacao @relation(fields: [capacitacaoId], references: [id])
 }
 
 model Beneficio {
-  id      String    @id @default(uuid())
-  texto   String
-  Servico Servico[]
+  id        String  @id @default(uuid())
+  texto     String
+  servicoId String
+  Servico   Servico @relation(fields: [servicoId], references: [id])
 }

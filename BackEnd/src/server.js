@@ -189,12 +189,19 @@ app.get('/capacitacoes', async (req, res) => {
 //GET BY ID - CAPACITAÇÕES
 app.get('/capacitacoes/:id', async (req, res) => {
     try {
-        const capacitacao = await prisma.capacitacao.findUnique({
+        const aprendizados = await prisma.aprendizado.findMany({
+            where: {
+                capacitacaoId: req.params.id
+            }
+        })
+        let capacitacao = await prisma.capacitacao.findUnique({
             where: {
                 id: req.params.id
             }
         });
+        capacitacao.aprendizado = aprendizados;
         if (capacitacao) {
+            console.log(capacitacao);
             res.status(200).json(capacitacao);
         } else {
             res.status(404).json({ message: 'Capacitação não encontrada' });
