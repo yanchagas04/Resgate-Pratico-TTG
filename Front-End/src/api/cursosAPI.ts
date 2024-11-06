@@ -6,8 +6,7 @@ export async function pegarCursos(){
     if (!response.ok) {
         console.log("Não foi possível requisitar os cursos! Status de Erro: " + response.status);
     }
-    const cursos : Curso[] = await response.json();
-    return cursos;
+    return await response.json() as Curso[];
 }
 
 export async function pegarCursoId(id: string | undefined) {
