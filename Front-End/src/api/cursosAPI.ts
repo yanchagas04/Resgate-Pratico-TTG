@@ -3,7 +3,7 @@ const ENDERECO_BACKEND = "http://localhost:3000";
 
 export async function pegarCursos(){
     const response = await fetch(ENDERECO_BACKEND + "/capacitacoes");
-    if (!response.ok) {
+    if (!response.ok) { 
         console.log("Não foi possível requisitar os cursos! Status de Erro: " + response.status);
     }
     return await response.json() as Curso[];
@@ -15,5 +15,5 @@ export async function pegarCursoId(id: string | undefined) {
         console.log(console.log("Não foi possível requisitar o curso! Status de Erro: " + response.status));
     }
     const curso : Curso = await response.json();
-    return curso;
+    return curso as Curso;
 }

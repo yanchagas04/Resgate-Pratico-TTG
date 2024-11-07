@@ -31,16 +31,17 @@ function Sobre() {
             </div>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center gap-20">
-            <div className="md:w-1/2 order-2 md:order-1">
-                <img className="w-full h-auto rounded-lg" src={ct} alt="Centro de Treinamento"/>
-            </div>
-            <div className="md:w-1/2 order-1 md:order-2 flex flex-col justify-center items-center">
+            
+            <div className="md:w-1/2  flex flex-col justify-center items-center">
                 <div className="text-center text-black text-3xl font-semibold font-['Inter'] tracking-wide mb-4">
                 <p>Centro de Treinamento</p>
                 </div>
                 <div className="text-justify text-black text-xl font-normal font-['Inter'] tracking-tight">
                 <p>Juntos, com muitas horas de dedicação aos serviços e também à obra, concluíram o projeto do centro de treinamento, que foi inaugurado em dezembro de 2023. Desde então, o objetivo inicial de fornecer treinamentos de qualidade e um espaço confortável com recursos diversos vem sendo cumprido. <br/><br/> Hoje, com crescimento exponencial, a Resgate Prático vem se destacando no mercado de segurança do trabalho e segurança contra incêndio.</p>
                 </div>
+            </div>
+            <div className="md:w-1/2">
+                <img className="w-full h-auto rounded-lg" src={ct} alt="Centro de Treinamento"/>
             </div>
             </div>
         </div>
