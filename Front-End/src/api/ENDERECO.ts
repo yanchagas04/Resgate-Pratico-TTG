@@ -1,0 +1,1 @@
+export const ENDERECO_BACKEND = "http://localhost:3000"

@@ -1,5 +1,5 @@
 import { Curso } from "../types/TypesCSE";
-const ENDERECO_BACKEND = "http://localhost:3000";
+import { ENDERECO_BACKEND } from "./ENDERECO";
 
 export async function pegarCursos(){
     const response = await fetch(ENDERECO_BACKEND + "/capacitacoes");
@@ -16,4 +16,39 @@ export async function pegarCursoId(id: string | undefined) {
     }
     const curso : Curso = await response.json();
     return curso as Curso;
+}
+
+export async function deletarCurso(id: string) {
+    const response = await fetch(ENDERECO_BACKEND + "/capacitacoes/" + id, {
+        method: "DELETE"
+    });
+    if (!response.ok) {
+        console.log("Não foi possível deletar o curso! Status de Erro: " + response.status);
+    }
+}
+
+export async function criarCurso(curso: Curso) {
+    const response = await fetch(ENDERECO_BACKEND + "/capacitacoes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(curso)
+    });
+    if (!response.ok) {
+        console.log("Não foi possível criar o curso! Status de Erro: " + response.status);
+    }
+}
+
+export async function editarCurso(curso: Curso) {
+    const response = await fetch(ENDERECO_BACKEND + "/capacitacoes/" + curso.id, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(curso)
+    });
+    if (!response.ok) {
+        console.log("Não foi possível editar o curso! Status de Erro: " + response.status);
+    }
 }

@@ -19,8 +19,14 @@ function PaginaGeralCursos(){
            <div className='flex flex-col justify-center items-center gap-4 w-full'>
            <Header />
                 <h1 className='text-gray-950 font-[Inter] text-2xl p-2 font-bold'>CURSOS COM CERTIFICAÇÃO</h1>
-                <div className='flex flex-wrap gap-4 justify-center items-center py-2 px-4'>
-                    {cursos?.map((curso) => (<CardCSE key={curso.id} id={curso.id} nome={curso.nome} descricao={curso.descricao} imagem={curso.linkImagem} tipo="C"/>))}
+                <div className='flex flex-wrap gap-4 justify-center items-center py-2 px-4 min-h-[70vh]'>
+                    {
+                    cursos.length > 0 &&
+                    cursos?.map((curso) => (<CardCSE key={curso.id} id={curso.id} nome={curso.nome} descricao={curso.descricao} imagem={curso.linkImagem} tipo="C"/>))}
+                    {
+                        cursos.length === 0 &&
+                        <h1 className='text-gray-950 font-[Inter] text-2xl p-2 font-bold'>Nenhum curso encontrado :(</h1>
+                    }
                 </div>
             <Footer />
             </div>

@@ -1,28 +1,31 @@
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
 import CardCSE from '../Elements/CardCSE';
-import icone from '../assets/certinho.png';
-import FotoDoEquipamento from '../assets/FotoDoCurso.png';
-import imgTeste from '../assets/imgTeste.png';
-
+import { useEffect, useState } from 'react';
+import { Equipamento } from '../types/TypesCSE';
+import { pegarEquipamentos } from '../api/equipamentosAPI';
 
 function PaginaGeralEquipamentos(){
+    const [equipamentos, setEquipamentos] = useState<Equipamento[]>([]);
+    useEffect(() => {
+        pegarEquipamentos().then((response)=>{
+            let equipamentosArray : Equipamento[] = response;
+            setEquipamentos(equipamentosArray);
+        })
+    }, [equipamentos]);
     return (
         <>
-            
            <div className='flex flex-col justify-center items-center gap-4 w-full'>
            <Header />
                 <h1 className='text-gray-950 font-[Inter] text-2xl p-2 font-bold'>EQUIPAMENTOS</h1>
-                <div className='flex flex-wrap gap-4 justify-center items-center py-2 px-4'>
-
-                <CardCSE id='0' nome="Equipamento 1" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoEquipamento} tipo="E"/>
-                <CardCSE id='0' nome="Equipamento 2" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoEquipamento} tipo="E"/>
-                <CardCSE id='0' nome="Equipamento 3" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoEquipamento} tipo="E"/>
-                <CardCSE id='0' nome="Equipamento 4" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoEquipamento} tipo="E"/>
-                <CardCSE id='0' nome="Equipamento 5" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoEquipamento} tipo="E"/>
-                <CardCSE id='0' nome="Equipamento 6" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoEquipamento} tipo="E"/>
-                <CardCSE id='0' nome="Equipamento 7" descricao="Breve descrição sobre o curso, detalhamento na página de cada curso. " imagem={FotoDoEquipamento} tipo="E"/>
-
+                <div className='flex flex-wrap gap-4 justify-center items-center py-2 px-4 min-h-[70vh]'>
+                    {
+                    equipamentos.length > 0 &&
+                    equipamentos?.map((equipamento) => (<CardCSE key={equipamento.id} id={equipamento.id} nome={equipamento.nome} descricao={equipamento.descricao} imagem={equipamento.linkImagem} tipo="E"/>))}
+                    {
+                        equipamentos.length === undefined &&
+                        <div className='text-gray-950 font-[Inter] text-2xl p-2 font-bold'>Nenhum equipamento encontrado :(</div>
+                    }
                 </div>
             <Footer />
             </div>

@@ -16,7 +16,7 @@ export type Curso = {
 export type Servico = {
     nome: string,
     descricao: string,
-    imagem: string,
+    linkImagem: string,
     id: string,
     tipo: string,
     beneficio: string[]
@@ -25,7 +25,7 @@ export type Servico = {
 export type Equipamento = {
     nome: string,
     descricao: string,
-    imagem: string,
+    linkImagem: string,
     id: string,
     tipo: string,
 }
