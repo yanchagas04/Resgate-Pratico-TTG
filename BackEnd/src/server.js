@@ -8,6 +8,7 @@ const cors = require("cors");
 app.listen(PORT, function () {
     console.log("Server is running on port ".concat(PORT));
 });
+app.use(express.json());
 app.use(cors()) //trocar depois pra o endereço correto
 
 //GET ALL - Equipamentos
@@ -48,15 +49,19 @@ app.get('/equipamentos/:id', async (req, res) => {
 //POST - Equipamentos
 app.post('/equipamentos', async (req, res) => {
     try {
+        console.log(req.body);
         const equipamento = await prisma.equipamento.create({
             data: req.body
         });
         res.status(201).json(equipamento);
     } catch (error) {
         if (error instanceof Prisma.PrismaClientValidationError) {
+            console.log(error);
             res.status(400).json({ error: "Os dados enviados são inválidos"});
+        } else {
+            console.log(error);
+            res.status(500).json({ error: "Erro do servidor"});
         }
-        res.status(500).json({ error: "Erro do servidor"});
     }
 });
 
@@ -201,7 +206,6 @@ app.get('/capacitacoes/:id', async (req, res) => {
         });
         capacitacao.aprendizado = aprendizados;
         if (capacitacao) {
-            console.log(capacitacao);
             res.status(200).json(capacitacao);
         } else {
             res.status(404).json({ message: 'Capacitação não encontrada' });
