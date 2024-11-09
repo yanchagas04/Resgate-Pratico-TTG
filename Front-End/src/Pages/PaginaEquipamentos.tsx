@@ -1,22 +1,28 @@
+import { useEffect, useState } from 'react';
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
-import EquipamentoProps from '../Elements/Interfaces/Equipamento';
 import icone from '../assets/certinho.png';
-import imgTeste from '../assets/imgTeste.png';
+import { Equipamento } from '../types/TypesCSE';
+import { useParams } from 'react-router-dom';
+import { pegarEquipamentoId } from '../api/equipamentosAPI';
 
 function PaginaEquipamentos() {
-    const equipamento = {} as EquipamentoProps;  //realizar o fetch aq
+    const [equipamento, setEquipamento] = useState<Equipamento>();
+    const { id } = useParams();
+    useEffect(() => {
+        pegarEquipamentoId(id).then((value) => setEquipamento(value));
+    }, [equipamento]);
     return (
         <div className='w-full min-h-screen flex flex-col gap-4'>
             <Header />
             <div className="h-full pt-[50px] flex flex-col justify-center items-center gap-6 md:px-0">
             <div className="h-full self-stretch px-[25px] bg-white rounded-[10px] flex-col md:flex-row justify-center items-center gap-[50px] inline-flex">
             <div className="h-full grow shrink basis-0 self-stretch flex-col justify-center items-start gap-[25px] inline-flex">
-            <div className="text-black text-[32px] font-semibold font-['Inter'] tracking-wide h-fit ">NOME DO EQUIPAMENTO</div>
-            <div className="self-stretch text-justify text-black text-base font-normal font-['Inter'] tracking-tight h-full">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div> 
+            <div className="text-black text-[32px] font-semibold font-['Inter'] tracking-wide h-fit ">{equipamento?.nome}</div>
+            <div className="self-stretch text-justify text-black text-base font-normal font-['Inter'] tracking-tight h-full">{equipamento?.descricao}</div> 
             </div>
         <div className="flex-col justify-center items-center gap-[25px] inline-flex h-full">
-            <img className="w-[455px] h-[350px] " src={imgTeste} />
+            <img className="w-[455px] h-[350px] " src={equipamento?.linkImagem} />
             {/* Botão */}
             <button className="p-2.5 bg-gradient-to-r from-[#393939] to-[#393939] rounded-[5px] justify-center items-center gap-2.5 inline-flex h-fit">
                 <div className="text-justify text-white text-base font-semibold font-['Inter'] tracking-tight">Adicionar a lista de equipamentos</div>

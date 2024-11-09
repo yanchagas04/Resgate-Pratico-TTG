@@ -9,6 +9,7 @@ import PaginaServicos from '../Pages/PaginaServicos';
 import PaginaEquipamentos from '../Pages/PaginaEquipamentos';
 import PaginaGeralEquipamentos from '../Pages/PaginaGeralEquipamentos';
 import ListaDeInteresse from '../Pages/ListaDeInteresse';
+import NotFoundPage from '../Pages/NotFoundPage';
 
 function Router() {
     return (
@@ -24,6 +25,7 @@ function Router() {
                     <Route path="/servico/:id" element={<PaginaServicos/>} />
                     <Route path="/equipamento/:id" element={<PaginaEquipamentos />} />
                     <Route path="/listaDeInteresse" element={<ListaDeInteresse />} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
         </BrowserRouter>
     )

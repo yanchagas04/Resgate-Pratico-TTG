@@ -49,17 +49,14 @@ app.get('/equipamentos/:id', async (req, res) => {
 //POST - Equipamentos
 app.post('/equipamentos', async (req, res) => {
     try {
-        console.log(req.body);
         const equipamento = await prisma.equipamento.create({
             data: req.body
         });
         res.status(201).json(equipamento);
     } catch (error) {
         if (error instanceof Prisma.PrismaClientValidationError) {
-            console.log(error);
             res.status(400).json({ error: "Os dados enviados são inválidos"});
         } else {
-            console.log(error);
             res.status(500).json({ error: "Erro do servidor"});
         }
     }
@@ -113,11 +110,17 @@ app.get('/servicos', async (req, res) => {
 //GET BY ID - Servicos
 app.get('/servicos/:id', async (req, res) => {
     try {
-        const servico = await prisma.servico.findUnique({
+        const beneficios = await prisma.beneficio.findMany({
+            where: {
+                servicoId: req.params.id
+            }
+        });
+        let servico = await prisma.servico.findUnique({
             where: {
                 id: req.params.id
             }
         });
+        servico.beneficio = beneficios;
         if (servico) {
             res.status(200).json(servico);
         } else {

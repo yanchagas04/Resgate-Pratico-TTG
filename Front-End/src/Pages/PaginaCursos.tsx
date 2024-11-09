@@ -1,9 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
-import CursoProps from '../Elements/Interfaces/Curso';
 import icone from '../assets/certinho.png';
-import imgTeste from '../assets/imgTeste.png';
 import { pegarCursoId } from '../api/cursosAPI';
 import { Aprendizado, Curso } from '../types/TypesCSE';
 import { useEffect, useState } from 'react';
@@ -57,9 +55,9 @@ function PaginaCursos(){
                     <p className='text-white font-bold'>Nenhum aprendizado encontrado</p>
                 }
         </div>
-            <Footer />
         
         </div>
+            <Footer />
 
     </div>
     )

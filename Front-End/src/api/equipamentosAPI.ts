@@ -9,7 +9,7 @@ export async function pegarEquipamentos() {
     return await response.json() as Equipamento[];
 }
 
-export async function pegarEquipamentoId(id: string) {
+export async function pegarEquipamentoId(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/equipamentos/" + id);
     if (!response.ok) {
         console.log("Nao foi possivel pegar o equipamento! Status de erro: " + response.status);
@@ -43,7 +43,7 @@ export async function editarEquipamento(equipamento: Equipamento) {
     }
 }
 
-export async function deletarEquipamento(id: string) {
+export async function deletarEquipamento(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/equipamentos/" + id, {
         method: "DELETE"
     });

@@ -9,7 +9,7 @@ export async function pegarServicos() {
     return await response.json() as Servico[];
 }
 
-export async function pegarServicoId(id: string) {
+export async function pegarServicoId(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/servicos/" + id);
     if (!response.ok) {
         console.log("Nao foi possivel pegar o servico! Status de erro: " + response.status);
@@ -43,7 +43,7 @@ export async function editarServico(servico: Servico) {
     }
 }
 
-export async function deletarServico(id: string) {
+export async function deletarServico(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/servicos/" + id, {
         method: "DELETE"
     });

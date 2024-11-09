@@ -18,7 +18,7 @@ export async function pegarCursoId(id: string | undefined) {
     return curso as Curso;
 }
 
-export async function deletarCurso(id: string) {
+export async function deletarCurso(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/capacitacoes/" + id, {
         method: "DELETE"
     });
