@@ -33,20 +33,20 @@ function Home(){
             {/* Cards */}
             <div className="relative w-full flex flex-col md:flex-row justify-center items-center gap-6 mt-6 md:mt-[-150px]">
             <CardDivisao
-                nome="Equipamento"
+                nome="Equipamentos"
                 descricao="Conheça nossos equipamentos de proteção individual e coletiva"
                 imagem={imgCurso}
                 link="/equipamentos"
             />
             <CardDivisao
                 nome="Capacitações"
-                descricao="Conheça nossos cursos de primeiros socorros"
+                descricao="Conheça nossas capacitações e cursos de treinamento"
                 imagem={imgCurso}
                 link="/capacitacoes"
             />
             <CardDivisao
                 nome="Serviços"
-                descricao="Conheça nossos serviços de manutenção e reparo de equipamentos"
+                descricao="Conheça nossos serviços de manutenção, reparo de equipamentos e outros"
                 imagem={imgCurso}
                 link="/servicos"
             />
@@ -66,7 +66,7 @@ function Home(){
                 </div>
                 <p className="text-[#666666] font-normal text-lg">Conheça as principais capacitações que oferecemos!</p>
             </div>
-            <CarroselOficial />
+            <CarroselOficial tipo='C'/>
 
             {/* carrosel servicos */}
             <div className="text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide">
@@ -78,7 +78,7 @@ function Home(){
                 </div>
                 <p className="text-[#666666] font-normal text-lg">Conheça os principais serviços que oferecemos!</p>
             </div>
-            <CarroselOficial />
+            <CarroselOficial tipo='S'/>
 
             {/* feedbacks */}
             <Feedbacks />

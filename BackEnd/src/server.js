@@ -168,6 +168,11 @@ app.put('/servicos/:id', async (req, res) => {
 //DELETE - Servicos
 app.delete('/servicos/:id', async (req, res) => {
     try {
+        await prisma.beneficio.deleteMany({
+            where: {
+                servicoId: req.params.id
+            }
+        })
         await prisma.servico.delete({
             where: { id: req.params.id }
         });
@@ -255,6 +260,11 @@ app.put('/capacitacoes/:id', async (req, res) => {
 //DELETE - CAPACITAÇÕES
 app.delete('/capacitacoes/:id', async (req, res) => {
     try {
+        await prisma.aprendizado.deleteMany({
+            where: {
+                capacitacaoId: req.params.id
+            }
+        })
         await prisma.capacitacao.delete({
             where: { id: req.params.id }
         });
@@ -263,6 +273,7 @@ app.delete('/capacitacoes/:id', async (req, res) => {
         if (error instanceof Prisma.PrismaClientValidationError) {
             res.status(400).json({ error: "O id enviado é inválido"});
         }
+        console.log(error);
         res.status(500).json({ error: "Erro do servidor"});
     }
 });
@@ -348,5 +359,30 @@ app.delete('/users/:id', async (req, res) => {
             res.status(400).json({ error: "O id enviado é inválido"});
         }
         res.status(500).json({ error: "Erro do servidor"});
+    }
+});
+
+app.post('/admin/login', async (req, res) => {
+    try {
+        const user = await prisma.adminUsers.findUnique({
+            where: {
+                cpf: req.body.cpf
+            }
+        });
+        if (user) {
+            if (user.senha === req.body.senha) {
+                res.status(200).json(user);
+            } else {
+                res.status(401).json({ message: 'Senha inválida' });
+            }
+        } else {
+            res.status(404).json({ message: 'Usário não encontrado' });
+        }
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        } else {
+            res.status(500).json({ error: "Erro do servidor" });
+        }
     }
 });

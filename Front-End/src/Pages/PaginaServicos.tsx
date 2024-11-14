@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Footer from '../Elements/Footer';
 import Header from '../Elements/Header';
 import icone from '../assets/certinho.png';
 import { useParams } from 'react-router-dom';
 import { pegarServicoId } from '../api/servicosAPI';
 import { Beneficio, Servico } from '../types/TypesCSE';
+import { CSE_Context } from '../App';
 
 function PaginaServicos() {
     const [servico, setServico] = useState<Servico>();
@@ -13,7 +14,7 @@ function PaginaServicos() {
         pegarServicoId(id).then((value) => setServico(value));
     }, [servico]);
     const beneficios: Beneficio[] = [];
-    //console.log(servico);
+    const CSEcontext = useContext(CSE_Context);
     servico?.beneficio.forEach((beneficio : Beneficio) => beneficios.push(beneficio));
     return (
         <div className='w-full min-h-screen flex flex-col'>
@@ -29,7 +30,11 @@ function PaginaServicos() {
         <div className="flex-col justify-center items-center gap-[25px] inline-flex">
             <img className="w-[455px] h-[350px] " src={servico?.linkImagem} />
             {/* Botão */}
-            <button className="p-2.5 bg-gradient-to-r from-[#393939] to-[#393939] rounded-[5px] justify-center items-center gap-2.5 inline-flex">
+            <button className="p-2.5 bg-gradient-to-r from-[#393939] to-[#393939] rounded-[5px] justify-center items-center gap-2.5 inline-flex" onClick={() => {
+                if (servico !== undefined) {
+                    CSEcontext.addServico(servico);
+                }
+            }}>
                 <div className="text-justify text-white text-base font-semibold font-['Inter'] tracking-tight">Adicionar a lista de serviços</div>
                 <img className="w-5 h-5" src={icone} />
             </button>

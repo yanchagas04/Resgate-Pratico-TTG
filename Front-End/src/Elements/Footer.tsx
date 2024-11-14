@@ -1,7 +1,7 @@
 import InstaLogo from '../assets/insta.png';
 import LinkLogo from '../assets/linkedin.png';
 import FacebookLogo from '../assets/face.png';
-import LogoLogo from '../assets/logoVector.png';
+import LogoLogo from '../assets/LogoBW.png';
 
 function Footer() { 
     return (

@@ -1,11 +1,9 @@
-import Curso from "../Elements/Interfaces/Curso";
-import Servico from "../Elements/Interfaces/Servico"
-import Equipamento from "../Elements/Interfaces/Equipamento";
+import {Curso, Equipamento, Servico} from "../types/TypesCSE";
 
 class ContextCSE {
-    cursos: Array<Curso>;
-    equipamentos: Array<Equipamento>;;
-    servicos: Array<Servico>;
+    cursos: Curso[];
+    equipamentos: Equipamento[];
+    servicos: Servico[];
     constructor(cursos: [], equipamentos: [], servicos: []) {
         this.cursos = cursos;
         this.equipamentos = equipamentos;
@@ -20,14 +18,45 @@ class ContextCSE {
     //ADD
     addCurso(curso: Curso) {
         this.cursos.push(curso);
+        this.atualizarLocalStorage();
     }
 
     addEquipamento(equipamento: Equipamento) {
         this.equipamentos.push(equipamento);
+        this.atualizarLocalStorage();
     }
 
     addServico(servico: Servico) {
         this.servicos.push(servico);
+        this.atualizarLocalStorage();
+    }
+
+    removerCurso(id: string) {
+        delete this.cursos[this.cursos.findIndex((c) => c.id === id)];
+        this.atualizarLocalStorage();
+    }
+
+    removerEquipamento(id: string) {
+        delete this.equipamentos[this.equipamentos.findIndex((e) => e.id === id)];
+        this.atualizarLocalStorage();
+    }
+
+    removerServico(id: string) {
+        delete this.servicos[this.servicos.findIndex((s) => s.id === id)];
+        this.atualizarLocalStorage();
+    }
+
+    limparTudo() {
+        this.cursos = [];
+        this.equipamentos = [];
+        this.servicos = [];
+        this.atualizarLocalStorage();
+    }
+
+    atualizarLocalStorage() {
+        localStorage.setItem("cursos", JSON.stringify(this.cursos));
+        localStorage.setItem("equipamentos", JSON.stringify(this.equipamentos));
+        localStorage.setItem("servicos", JSON.stringify(this.servicos));
     }
 }
 

@@ -1,22 +1,15 @@
-import React from "react";
-import CardCursoServico from '../Elements/CardCursoServico';
-import logo from '../assets/logoVector.png';
-import imgCurso from '../assets/exemploCurso.png';
+import { useEffect, useState } from "react";
 
 // Importação do Slider
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CardCSE from "./CardCSE";
+import { pegarCursos } from "../api/cursosAPI";
+import { pegarEquipamentos } from "../api/equipamentosAPI";
+import { pegarServicos } from "../api/servicosAPI";
+import { Curso, Servico, Equipamento } from "../types/TypesCSE";
 
-// Dados dos cards
-const cards = [
-  { nome: 'Curso 1', descricao: 'Descrição do curso 1', imagem: imgCurso },
-  { nome: 'Curso 2', descricao: 'Descrição do curso 2', imagem: imgCurso },
-  { nome: 'Curso 3', descricao: 'Descrição do curso 3', imagem: imgCurso },
-  { nome: 'Curso 4', descricao: 'Descrição do curso 4', imagem: imgCurso },
-  { nome: 'Curso 5', descricao: 'Descrição do curso 5', imagem: imgCurso },
-  { nome: 'Curso 6', descricao: 'Descrição do curso 6', imagem: imgCurso },
-];
 
 // prox seta
 function SampleNextArrow(props: any) {
@@ -62,7 +55,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-function CarroselOficial() {
+function CarroselOficial(props: {tipo: string}) {
   const settings = {
     dots: true,
     infinite: false,
@@ -94,13 +87,31 @@ function CarroselOficial() {
       }
     ]
   };
-
+  const [conteudo, setConteudo] = useState<Curso[] | Servico[] | Equipamento[]>([]);
+  useEffect(() => {
+      if(props.tipo === 'C'){
+          pegarCursos().then((response)=>{
+              let cursosArray : Curso[] = response;
+              setConteudo(cursosArray);
+          });
+      } else if(props.tipo === 'S'){
+          pegarServicos().then((response)=>{
+              let servicosArray : Servico[] = response;
+              setConteudo(servicosArray);
+          })
+      } else if(props.tipo === 'E'){
+          pegarEquipamentos().then((response)=>{
+              let equipamentosArray : Equipamento[] = response;
+              setConteudo(equipamentosArray);
+          })
+      }
+  }, [conteudo]);
   return (
     <div className="slider-container w-full max-w-screen-lg mx-auto relative px-4 pt-10">
       <Slider {...settings}>
-        {cards.map((card, index) => (
-          <div key={index} className="px-9">
-            <CardCursoServico nome={card.nome} descricao={card.descricao} imagem={card.imagem} />
+        {conteudo.map((item) => (
+          <div key={item.id} className="px-9">
+            <CardCSE nome={item.nome} descricao={item.descricao} imagem={item.linkImagem} id={item.id} tipo={props.tipo}  />
           </div>
         ))}
       </Slider>
