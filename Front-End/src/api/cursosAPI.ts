@@ -27,7 +27,7 @@ export async function deletarCurso(id: string | undefined) {
     }
 }
 
-export async function criarCurso(curso: Curso) {
+export async function criarCurso(curso: any) {
     const response = await fetch(ENDERECO_BACKEND + "/capacitacoes", {
         method: "POST",
         headers: {

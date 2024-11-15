@@ -6,7 +6,6 @@ export const CSE_Context = createContext(new ContextCSE([], [], []));
 
 function App() {
   const CSEcontext = useContext(CSE_Context);
-  console.log(localStorage.getItem("cursos"));
   return (
     <CSE_Context.Provider value={CSEcontext}>
       <Router />

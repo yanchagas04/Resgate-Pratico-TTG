@@ -50,7 +50,11 @@ app.get('/equipamentos/:id', async (req, res) => {
 app.post('/equipamentos', async (req, res) => {
     try {
         const equipamento = await prisma.equipamento.create({
-            data: req.body
+            data: {
+                nome: req.body.nome,
+                linkImagem: req.body.linkImagem,
+                descricao: req.body.descricao
+            }
         });
         res.status(201).json(equipamento);
     } catch (error) {
@@ -138,10 +142,23 @@ app.get('/servicos/:id', async (req, res) => {
 app.post('/servicos', async (req, res) => {
     try {
         const servico = await prisma.servico.create({
-            data: req.body
+            data: {
+                nome: req.body.nome,
+                descricao: req.body.descricao,
+                linkImagem: req.body.linkImagem
+            }
+        })
+        req.body.beneficio.forEach(async beneficio => {
+            await prisma.beneficio.create({
+                data: {
+                    texto: beneficio,
+                    servicoId: servico.id
+                }
+            })
         });
         res.status(201).json(servico);
     } catch (error) {
+        console.log(error);
         if (error instanceof Prisma.PrismaClientValidationError) {
             res.status(400).json({ error: "Os dados enviados são inválidos"});
         }
@@ -230,10 +247,24 @@ app.get('/capacitacoes/:id', async (req, res) => {
 app.post('/capacitacoes', async (req, res) => {
     try {
         const capacitacao = await prisma.capacitacao.create({
-            data: req.body
+            data: {
+                cargaHoraria: req.body.cargaHoraria,
+                nome: req.body.nome,
+                linkImagem: req.body.linkImagem,
+                descricao: req.body.descricao
+            }
+        });
+        req.body.aprendizado.forEach(async aprendizado => {
+            await prisma.aprendizado.create({
+                data: {
+                    texto: aprendizado,
+                    capacitacaoId: capacitacao.id
+                }
+            })
         });
         res.status(201).json(capacitacao);
     } catch (error) {
+        console.log(error);
         if (error instanceof Prisma.PrismaClientValidationError) {
             res.status(400).json({ error: "Os dados enviados são inválidos"});
         }
@@ -386,3 +417,53 @@ app.post('/admin/login', async (req, res) => {
         }
     }
 });
+
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        requireTLS: true,
+        auth: {
+            user: "resgatepraticoautomatico@gmail.com",
+            pass: "julw vihl bylb ivwl" //colocar a senha de apps menos seguros do gmail
+        }
+    });
+
+function transformInformacoesEmail(informacoesEmail) {
+    return "Nome Solicitador: " + informacoesEmail.nome + "\n" + "Email Solicitador: " + informacoesEmail.email + "\n" + "- Cursos: " + informacoesEmail.curso + "\n" +
+        "- Equipamentos: " + informacoesEmail.equipamento + "\n" +
+        "- Servicos: " + informacoesEmail.servico
+}
+
+function enviarEmail(informacoesEmail) {
+    const conteudo = transformInformacoesEmail(informacoesEmail);
+    transporter.sendMail({
+        from: "Resgate Prático Automático <resgatepraticoautomatico@gmail.com>", //esse padrão é indispensável e o email tem que ser igual ao do transporter
+        to: "resgatepraticoautomatico@gmail.com",
+        subject: "Solicitação de Contato de " + informacoesEmail.nome,
+        text: conteudo,
+    }).then(msg => {
+        return msg	 //msg de sucesso
+    }).catch(err => {
+        return err //msg de erro
+    })
+}
+
+app.post('/contato', async (req, res) => {
+    try {
+        const informacoesEmail = {
+            nome: req.body.nome,
+            email: req.body.email,
+            telefone: req.body.telefone,
+            curso: req.body.curso,
+            servicos: req.body.servicos,
+            equipamentos: req.body.equipamentos
+        }
+        const response = await enviarEmail(informacoesEmail);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+})

@@ -1,15 +1,19 @@
 import Logo from '../assets/LogoVector.png';
 import IconeTelefone from '../assets/IconeTelefone.png';
 import { NavLink } from 'react-router-dom';
+import enviarDadosFormulario, { dadosFormulario } from '../api/contatoAPI';
+import { useContext } from 'react';
+import { CSE_Context } from '../App';
 
 function FormsContato() {
-    const cursos = [];
-    const servicos = [];
-    const equipamentos = [];
+    const CSEcontext = useContext(CSE_Context);
+    const cursos: string[] = CSEcontext.getCursos().map((c) => c.nome);
+    const servicos: string[] = CSEcontext.getServicos().map((s) => s.nome);
+    const equipamentos: string[] = CSEcontext.getEquipamentos().map((e) => e.nome);
     return (
         <div className="flex flex-col-reverse lg:flex-row-reverse w-full min-h-screen font-[Inter] transition-all duration-150 ease-in">
             <div className="flex w-full bg-slate-100 items-center justify-center py-8">
-                <form className='min-w-96 w-3/4 h-fit flex flex-col justify-center items-center bg-white drop-shadow-lg rounded-lg p-4 gap-4'>
+                <div className='min-w-96 w-3/4 h-fit flex flex-col justify-center items-center bg-white drop-shadow-lg rounded-lg p-4 gap-4'>
                     <NavLink to="/" className="lg:hidden">
                         <img src={Logo} alt="Logotipo" className="w-48" />
                     </NavLink>
@@ -25,17 +29,30 @@ function FormsContato() {
                     <div className='flex flex-col w-full'>
                         <h3>Cursos selecionados:</h3>
                         {cursos.length === 0 && <p className='p-2 pl-4'>Nenhum curso selecionado</p>}
+                        {cursos.length > 0 && cursos.map((curso) => (<p key={curso} className='p-2 pl-4'>{"- " + curso}</p>))}
                     </div>
                     <div className='flex flex-col w-full'>
                         <h3>Serviços selecionados:</h3>
                         {servicos.length === 0 && <p className='p-2 pl-4'>Nenhum serviço selecionado</p>}
+                        {servicos.length > 0 && servicos.map((servico) => (<p key={servico} className='p-2 pl-4'>{"- " + servico}</p>))}
                     </div>
                     <div className='flex flex-col w-full'>
                         <h3>Equipamentos selecionados:</h3>
                         {equipamentos.length === 0 && <p className='p-2 pl-4'>Nenhum equipamento selecionado</p>}
+                        {equipamentos.length > 0 && equipamentos.map((equipamento) => (<p key={equipamento} className='p-2 pl-4'>{"- " + equipamento}</p>))}
                     </div>
-                    <button type="submit" className='bg-green-500 text-white w-full p-3 rounded-md hover:bg-green-600 transition-all duration-150 ease-in'>Enviar</button>
-                </form>
+                    <button className='bg-green-500 text-white w-full p-3 rounded-md hover:bg-green-600 transition-all duration-150 ease-in' onClick={async () => {
+                        const dados: dadosFormulario = {
+                            nome: (document.getElementById('nome') as HTMLInputElement).value,
+                            email: (document.getElementById('email') as HTMLInputElement).value,
+                            telefone: (document.getElementById('telefone') as HTMLInputElement).value,
+                            curso: cursos.toString() === undefined ? "Nenhum curso solicitado." : cursos.toString(),
+                            servico: servicos.toString() === undefined ? "Nenhum serviço solicitado." : servicos.toString(),
+                            equipamento: equipamentos.toString() === undefined ? "Nenhum equipamento solicitado." : equipamentos.toString()
+                        }
+                        await enviarDadosFormulario(dados);
+                    }}>Enviar</button>
+                </div>
             </div>
             <div>
                 <nav className="hidden h-full lg:flex lg:flex-col lg:min-w-[256px] w-2/6 lg:max-w-96 border-r-2 items-center justify-center gap-4 p-4">

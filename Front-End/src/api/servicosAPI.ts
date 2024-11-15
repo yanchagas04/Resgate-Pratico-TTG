@@ -17,7 +17,7 @@ export async function pegarServicoId(id: string | undefined) {
     return await response.json() as Servico;
 }
 
-export async function criarServico(servico: Servico) {
+export async function criarServico(servico: any) {
     const response = await fetch(ENDERECO_BACKEND + "/servicos", {
         method: "POST",
         headers: {

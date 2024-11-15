@@ -17,7 +17,7 @@ export async function pegarEquipamentoId(id: string | undefined) {
     return await response.json() as Equipamento;
 }
 
-export async function criarEquipamento(equipamento: Equipamento) {
+export async function criarEquipamento(equipamento: any) {
     const response = await fetch(ENDERECO_BACKEND + "/equipamentos", {
         method: "POST",
         headers: {

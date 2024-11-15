@@ -2,7 +2,13 @@
 export default {
   content: ['./src/**/*.tsx'],
   theme: {
-    extend: {},
+    extend: {
+      'backgroundImage': {
+        'cardServico': "url('.public/cardServico.png')",
+        'cardCurso': "url('.public/cardCurso.png')",
+        'cardEquipamento': "url('.public/cardEquipamento.png')"
+      }
+    },
   },
   plugins: [],
 }

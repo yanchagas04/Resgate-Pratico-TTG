@@ -5,6 +5,7 @@ import { pegarCursos } from "../../api/cursosAPI";
 import { Servico } from "../../types/TypesCSE";
 import { pegarServicos } from "../../api/servicosAPI";
 import { pegarEquipamentos } from "../../api/equipamentosAPI";
+import { Link } from "react-router-dom";
 
 interface MostrarCSEProps {
     tipo: string
@@ -36,7 +37,9 @@ function MostrarCSE(props: MostrarCSEProps){
     }, [conteudo]);
     return (
         <div className="flex flex-wrap justify-center items-center gap-4 px-8">
-            <button type="button" className='bg-red-700 hover:bg-red-800 flex justify-center items-center hover:scale-105 duration-150 ease-in text-white text-7xl text-center font-semibold font-[Inter] rounded-full w-32 h-32'>+</button>
+            <Link to={'/admin/criador'}>
+                <button type="button" className='bg-red-700 hover:bg-red-800 flex justify-center items-center hover:scale-105 duration-150 ease-in text-white text-7xl text-center font-semibold font-[Inter] rounded-full w-32 h-32'>+</button>
+            </Link>
         {
             conteudo.length > 0 && <>{conteudo.map(element => <EditableCardCSE key={element.id} nome={nomeConteudo + " " + element.nome} descricao={element.descricao} imagem={element.linkImagem} id={element.id} tipo={props.tipo}/>)}</>
         }
