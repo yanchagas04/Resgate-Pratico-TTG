@@ -110,7 +110,7 @@ function CarroselOficial(props: {tipo: string}) {
     <div className="slider-container w-full max-w-screen-lg mx-auto relative px-4 pt-10">
       <Slider {...settings}>
         {conteudo.map((item) => (
-          <div key={item.id} className="px-9">
+          <div key={item.id} className="px-9 gap-4">
             <CardCSE nome={item.nome} descricao={item.descricao} imagem={item.linkImagem} id={item.id} tipo={props.tipo}  />
           </div>
         ))}

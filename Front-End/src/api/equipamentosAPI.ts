@@ -30,7 +30,7 @@ export async function criarEquipamento(equipamento: any) {
     }
 }
 
-export async function editarEquipamento(equipamento: Equipamento) {
+export async function editarEquipamento(equipamento: any) {
     const response = await fetch(ENDERECO_BACKEND + "/equipamentos/" + equipamento.id, {
         method: "PUT",
         headers: {
@@ -38,9 +38,7 @@ export async function editarEquipamento(equipamento: Equipamento) {
         },
         body: JSON.stringify(equipamento)
     });
-    if (!response.ok) {
-        console.log("Nao foi possivel editar o equipamento! Status de erro: " + response.status);
-    }
+    return await response.status;
 }
 
 export async function deletarEquipamento(id: string | undefined) {

@@ -42,13 +42,13 @@ function FormsContato() {
                         {equipamentos.length > 0 && equipamentos.map((equipamento) => (<p key={equipamento} className='p-2 pl-4'>{"- " + equipamento}</p>))}
                     </div>
                     <button className='bg-green-500 text-white w-full p-3 rounded-md hover:bg-green-600 transition-all duration-150 ease-in' onClick={async () => {
-                        const dados: dadosFormulario = {
+                        let dados: dadosFormulario = {
                             nome: (document.getElementById('nome') as HTMLInputElement).value,
                             email: (document.getElementById('email') as HTMLInputElement).value,
                             telefone: (document.getElementById('telefone') as HTMLInputElement).value,
-                            curso: cursos.toString() === undefined ? "Nenhum curso solicitado." : cursos.toString(),
-                            servico: servicos.toString() === undefined ? "Nenhum serviço solicitado." : servicos.toString(),
-                            equipamento: equipamentos.toString() === undefined ? "Nenhum equipamento solicitado." : equipamentos.toString()
+                            curso: cursos.toString().length === 0 ? "Nenhum curso solicitado." : cursos.toString(),
+                            servico: servicos.toString().length === 0 ? "Nenhum serviço solicitado." : servicos.toString(),
+                            equipamento: equipamentos.toString().length === 0 ? "Nenhum equipamento solicitado." : equipamentos.toString()
                         }
                         await enviarDadosFormulario(dados);
                     }}>Enviar</button>

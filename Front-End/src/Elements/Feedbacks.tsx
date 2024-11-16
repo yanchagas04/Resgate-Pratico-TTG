@@ -5,7 +5,7 @@ import FiveStars from '../assets/5Stars.png';
 
 const Feedbacks = () => {
   return (
-    <div className="w-full px-4 lg:px-20 py-12 flex flex-col justify-center items-center">
+    <div className="w-full px-4 lg:px-20 py-12 flex flex-col justify-center items-center h-fit">
       {/* Título */}
       <div className="text-center text-black text-4xl font-semibold font-['Inter'] pb-2 tracking-wide mb-10 mt-8">
             <p>AVALIAÇÕES DOS CLIENTES</p>
@@ -20,10 +20,10 @@ const Feedbacks = () => {
       {/* Feedback Cards */}
       <div className="flex flex-wrap justify-center items-center gap-6">
         {/* Card 1 */}
-        <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative">
+        <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative h-[307px]">
           <div className="absolute top-6 left-6 text-[#02476f] font-['BARRIO'] text-8xl">”</div>
-          <div className="bg-gray-300 p-6 pt-16">
-            <p className="text-xl text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Ótimo espaço de treinamento, conhecimento e prática, bom atendimento."</p>
+          <div className="bg-gray-300 p-6 pt-16 h-[216px]">
+            <p className="text-xl h-full text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Ótimo espaço de treinamento, conhecimento e prática, bom atendimento."</p>
           </div>
           <div className="bg-neutral-800 p-4 text-center">
             <p className="text-xl text-[#d8d8d8] font-normal font-['Lexend Peta']">Ronaldo Nascimento</p>
@@ -32,9 +32,9 @@ const Feedbacks = () => {
         </div>
 
         {/* Card 2 */}
-        <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative">
+        <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative h-[307px]">
           <div className="absolute top-6 left-6 text-[#02476f] font-['BARRIO'] text-8xl">”</div>
-          <div className="bg-gray-300 p-6 pt-16">
+          <div className="bg-gray-300 p-6 pt-16 h-[216px]">
             <p className="text-xl text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Excelente centro de treinamento e com instrutores de excelência com informações atualizadas na área de segurança e emergência."</p>
           </div>
           <div className="bg-neutral-800 p-4 text-center">
@@ -44,9 +44,9 @@ const Feedbacks = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative">
+        <div className="w-full md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden flex flex-col relative h-[307px]">
           <div className="absolute top-6 left-6 text-[#02476f] font-['BARRIO'] text-8xl">”</div>
-          <div className="bg-gray-300 p-6 pt-16">
+          <div className="bg-gray-300 p-6 pt-16 h-[216px]">
             <p className="text-xl text-black text-center font-normal font-['Inter'] tracking-tight pt-4">"Local ótimo para treinamento de brigada de incêndio. Recomendo."</p>
           </div>
           <div className="bg-neutral-800 p-4 text-center">

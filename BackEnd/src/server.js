@@ -11,7 +11,7 @@ app.listen(PORT, function () {
 app.use(express.json());
 app.use(cors()) //trocar depois pra o endereço correto
 
-//GET ALL - Equipamentos
+//GET ALL - EquipamentoS
 app.get('/equipamentos', async (req, res) => {
     try {
         const equipamentos = await prisma.equipamento.findMany();
@@ -71,7 +71,11 @@ app.put('/equipamentos/:id', async (req, res) => {
     try {
         const equipamento = await prisma.equipamento.update({
             where: { id: req.params.id },
-            data: req.body
+            data: {
+                nome: req.body.nome,
+                linkImagem: req.body.linkImagem,
+                descricao: req.body.descricao
+            }
         });
         res.status(200).json(equipamento);
     } catch (error) {
@@ -158,9 +162,8 @@ app.post('/servicos', async (req, res) => {
         });
         res.status(201).json(servico);
     } catch (error) {
-        console.log(error);
         if (error instanceof Prisma.PrismaClientValidationError) {
-            res.status(400).json({ error: "Os dados enviados são inválidos"});
+            res.status(400).json({ error: "Os dados enviados são inválidos", message: error});
         }
         res.status(500).json({ error: "Erro do servidor"});
     }
@@ -171,7 +174,24 @@ app.put('/servicos/:id', async (req, res) => {
     try {
         const servico = await prisma.servico.update({
             where: { id: req.params.id },
-            data: req.body
+            data: {
+                nome: req.body.nome,
+                descricao: req.body.descricao,
+                linkImagem: req.body.linkImagem
+            }
+        });
+        await prisma.beneficio.deleteMany({
+            where: {
+                servicoId: req.params.id
+            }
+        })
+        req.body.beneficio.forEach(async beneficio => {
+            await prisma.beneficio.create({
+                data: {
+                    texto: beneficio,
+                    servicoId: servico.id
+                }
+            })
         });
         res.status(200).json(servico);
     } catch (error) {
@@ -264,9 +284,8 @@ app.post('/capacitacoes', async (req, res) => {
         });
         res.status(201).json(capacitacao);
     } catch (error) {
-        console.log(error);
         if (error instanceof Prisma.PrismaClientValidationError) {
-            res.status(400).json({ error: "Os dados enviados são inválidos"});
+            res.status(400).json({ error: "Os dados enviados são inválidos", message: error});
         }
         res.status(500).json({ error: "Erro do servidor"});
     }
@@ -277,7 +296,25 @@ app.put('/capacitacoes/:id', async (req, res) => {
     try {
         const capacitacao = await prisma.capacitacao.update({
             where: { id: req.params.id },
-            data: req.body
+            data: {
+                nome: req.body.nome,
+                cargaHoraria: req.body.cargaHoraria,
+                linkImagem: req.body.linkImagem,
+                descricao: req.body.descricao
+            }
+        });
+        await prisma.aprendizado.deleteMany({
+            where: {
+                capacitacaoId: req.params.id
+            }
+        })
+        req.body.aprendizado.forEach(async aprendizado => {
+            await prisma.aprendizado.create({
+                data: {
+                    texto: aprendizado,
+                    capacitacaoId: capacitacao.id
+                }
+            })
         });
         res.status(200).json(capacitacao);
     } catch (error) {
@@ -304,8 +341,7 @@ app.delete('/capacitacoes/:id', async (req, res) => {
         if (error instanceof Prisma.PrismaClientValidationError) {
             res.status(400).json({ error: "O id enviado é inválido"});
         }
-        console.log(error);
-        res.status(500).json({ error: "Erro do servidor"});
+        res.status(500).json({ error: "Erro do servidor", message: error});
     }
 });
 
@@ -319,7 +355,7 @@ app.get('/users', async (req, res) => {
             res.status(404).json({ message: 'Nenhum usuário encontrado' });
         }
     } catch (error) {
-        res.status(500).json({ error: "Erro do servidor" });
+        res.status(500).json({ error: "Erro do servidor" , message: error});
     }
 });
 
@@ -427,7 +463,7 @@ const transporter = nodemailer.createTransport({
         requireTLS: true,
         auth: {
             user: "resgatepraticoautomatico@gmail.com",
-            pass: "julw vihl bylb ivwl" //colocar a senha de apps menos seguros do gmail
+            pass: process.env.SENHA_EMAIL //colocar a senha de apps menos seguros do gmail
         }
     });
 
@@ -458,8 +494,8 @@ app.post('/contato', async (req, res) => {
             email: req.body.email,
             telefone: req.body.telefone,
             curso: req.body.curso,
-            servicos: req.body.servicos,
-            equipamentos: req.body.equipamentos
+            servico: req.body.servico,
+            equipamento: req.body.equipamento
         }
         const response = await enviarEmail(informacoesEmail);
         res.status(200).json(response);

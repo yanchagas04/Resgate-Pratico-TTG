@@ -24,7 +24,7 @@ function Router() {
                     <Route path="/contato" element={<FormsContato />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/admin/criador" element={<CriadorCSE />} />
-                    <Route path="/admin/editor" element={<EditorCSE />} />
+                    <Route path="/admin/editor/:tipo/:id" element={<EditorCSE />} />
                     <Route path="/curso/:id" element={<PaginaCursos/>} />
                     <Route path="/servico/:id" element={<PaginaServicos/>} />
                     <Route path="/equipamento/:id" element={<PaginaEquipamentos />} />

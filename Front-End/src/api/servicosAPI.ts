@@ -30,7 +30,7 @@ export async function criarServico(servico: any) {
     }
 }
 
-export async function editarServico(servico: Servico) {
+export async function editarServico(servico: any) {
     const response = await fetch(ENDERECO_BACKEND + "/servicos/" + servico.id, {
         method: "PUT",
         headers: {
@@ -38,9 +38,7 @@ export async function editarServico(servico: Servico) {
         },
         body: JSON.stringify(servico)
     });
-    if (!response.ok) {
-        console.log("Nao foi possivel editar o servico! Status de erro: " + response.status);
-    }
+    return await response.status;
 }
 
 export async function deletarServico(id: string | undefined) {

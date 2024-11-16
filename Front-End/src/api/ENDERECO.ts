@@ -1,1 +1,1 @@
-export const ENDERECO_BACKEND = "http://localhost:3000"
+export const ENDERECO_BACKEND = import.meta.env.VITE_ENDERECO_BACKEND;

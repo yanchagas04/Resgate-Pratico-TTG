@@ -18,7 +18,7 @@ function Admin() {
                     <div className="w-full h-screen flex bg-gray-300 justify-center">
                         <div className="min-w-96 w- h-full flex justify-center items-center">
                             <div className='w-full h-fit flex flex-col justify-center items-center bg-white drop-shadow-lg rounded-lg p-4 gap-4'>
-                                <label htmlFor="usuario" className="w-full text-left">Usuário (CPF)</label>
+                                <label htmlFor="usuario" className="w-full text-left">Usuário</label>
                                 <input type="text" id="usuario" name="usuario" className='w-full bg-gray-200 border border-gray-300 rounded-md p-2' />
                                 <label htmlFor="senha" className="w-full text-left">Senha</label>
                                 <input type="password" id="senha" name="senha" className='w-full bg-gray-200 border border-gray-300 rounded-md p-2' />
@@ -40,7 +40,7 @@ function Admin() {
                 {
                     logged && 
                     <>
-                        <div className='w-full flex flex-row justify-center items-center gap-4'>
+                        <div className='w-full flex flex-col sm:flex-row justify-center items-center gap-4'>
                             <button type="button" className={botao} onClick={() => setTipo('C')}>Capacitações</button>
                             <button type="button" className={botao} onClick={() => setTipo('S')}>Serviços</button>
                             <button type="button" className={botao} onClick={() => setTipo('E')}>Equipamentos</button>

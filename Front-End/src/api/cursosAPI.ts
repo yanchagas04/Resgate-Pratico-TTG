@@ -40,7 +40,7 @@ export async function criarCurso(curso: any) {
     }
 }
 
-export async function editarCurso(curso: Curso) {
+export async function editarCurso(curso: any) {
     const response = await fetch(ENDERECO_BACKEND + "/capacitacoes/" + curso.id, {
         method: "PUT",
         headers: {
@@ -48,7 +48,5 @@ export async function editarCurso(curso: Curso) {
         },
         body: JSON.stringify(curso)
     });
-    if (!response.ok) {
-        console.log("Não foi possível editar o curso! Status de Erro: " + response.status);
-    }
+    return await response.status;
 }
