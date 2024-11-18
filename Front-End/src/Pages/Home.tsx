@@ -50,19 +50,19 @@ function Home(){
             </div>
 
             {/* carrosel capacitações */}
-            <div className="text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide">
+            <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4">
                 <p>PRINCIPAIS CAPACITAÇÕES</p>
                 <div className="flex items-center justify-center">
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
                 <img src={logo} alt="Logo" className="h-12 w-12" />
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
                 </div>
-                <p className="text-[#666666] font-normal text-lg p-16">Conheça as principais capacitações que oferecemos!</p>
+                <p className="text-[#666666] font-normal text-lg">Conheça as principais capacitações que oferecemos!</p>
             </div>
             <CarroselOficial tipo='C'/>
 
             {/* carrosel servicos */}
-            <div className="text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide">
+            <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4">
                 <p>PRINCIPAIS SERVIÇOS</p>
                 <div className="flex items-center justify-center">
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
@@ -81,7 +81,7 @@ function Home(){
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
                 </div>
                 <p className="text-[#666666] font-normal text-lg">Conheça aonde fica localizado nosso centro de treinamento!</p>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.6962696298733!2d-38.311698324148466!3d-12.733226755063273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71614abd9a1a0ef%3A0x8ba8d26202a02027!2sCentro%20de%20Treinamento%20Resgate%20Pr%C3%A1tico!5e0!3m2!1spt-BR!2sbr!4v1731686523356!5m2!1spt-BR!2sbr" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className='w-5/6 aspect-square md:max-w-5xl border-4 rounded-3xl border-[#a32323]'></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.6962696298733!2d-38.311698324148466!3d-12.733226755063273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71614abd9a1a0ef%3A0x8ba8d26202a02027!2sCentro%20de%20Treinamento%20Resgate%20Pr%C3%A1tico!5e0!3m2!1spt-BR!2sbr!4v1731686523356!5m2!1spt-BR!2sbr" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className='w-3/5 aspect-video md:max-w-5xl border-4 rounded-3xl border-[#a32323]'></iframe>
             </div>
 
             {/* Sobre a Empresa */}

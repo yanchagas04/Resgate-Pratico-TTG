@@ -7,7 +7,7 @@ function Sobre() {
 
     return (
         <div className="min-h-screen flex flex-col justify-center items-center pt-20 px-4 md:px-10 lg:px-20">
-        <div className="text-center text-black text-4xl font-semibold font-['Inter'] pb-2 tracking-wide mb-10">
+        <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pb-2 tracking-wide mb-10 gap-4">
             <p>SOBRE A EMPRESA</p>
             <div className="flex items-center justify-center">
             <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>

@@ -7,7 +7,7 @@ const Feedbacks = () => {
   return (
     <div className="w-full px-4 lg:px-20 py-12 flex flex-col justify-center items-center h-fit">
       {/* Título */}
-      <div className="text-center text-black text-4xl font-semibold font-['Inter'] pb-2 tracking-wide mb-10 mt-8">
+      <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pb-2 tracking-wide mb-10 mt-8 gap-4">
             <p>AVALIAÇÕES DOS CLIENTES</p>
             <div className="flex items-center justify-center">
             <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
