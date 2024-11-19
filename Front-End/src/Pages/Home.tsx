@@ -6,10 +6,28 @@ import CarroselOficial from '../Elements/Carrosel';
 import Sobre from '../Elements/Sobre';
 import logo from '../assets/logoVector.png';
 import Feedbacks from '../Elements/Feedbacks';
-import cardCurso from '../assets/cardCurso.png';
+import { useEffect, useState } from 'react';
 
 
 function Home(){
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+    useEffect(() => {
+        function handleResize() {
+            setWindowSize({
+              height: window.innerHeight,
+              width: window.innerWidth
+            })
+          
+      }
+      
+          window.addEventListener('resize', handleResize)
+          return () => {
+            window.removeEventListener('resize', handleResize)
+          }
+    }, [windowSize]);
     return (
         <>
             <Header />
@@ -31,7 +49,7 @@ function Home(){
             </div>
 
             {/* Cards */}
-            <div className="relative w-full flex flex-col md:flex-row justify-center items-center gap-24 mt-6 md:mt-[-150px]">
+            <div className="relative w-full flex flex-col xl:flex-row justify-center items-center gap-24 mt-6 md:mt-[-150px]">
             <CardDivisao
                 nome="Equipamentos"
                 descricao="Conheça nossos equipamentos de proteção individual e coletiva"
@@ -50,7 +68,7 @@ function Home(){
             </div>
 
             {/* carrosel capacitações */}
-            <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4">
+            <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4 px-4">
                 <p>PRINCIPAIS CAPACITAÇÕES</p>
                 <div className="flex items-center justify-center">
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
@@ -62,7 +80,7 @@ function Home(){
             <CarroselOficial tipo='C'/>
 
             {/* carrosel servicos */}
-            <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4">
+            <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4 px-4">
                 <p>PRINCIPAIS SERVIÇOS</p>
                 <div className="flex items-center justify-center">
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
@@ -73,7 +91,7 @@ function Home(){
             </div>
             <CarroselOficial tipo='S'/>
 
-            <div className="flex flex-col justify-center items-center text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4">
+            <div className="flex flex-col justify-center items-center text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4 px-4">
                 <p>ONDE ESTAMOS</p>
                 <div className="flex items-center justify-center">
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
@@ -81,7 +99,7 @@ function Home(){
                 <div className="border-t-2 border-[#a32323] w-16 mx-2"></div>
                 </div>
                 <p className="text-[#666666] font-normal text-lg">Conheça aonde fica localizado nosso centro de treinamento!</p>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.6962696298733!2d-38.311698324148466!3d-12.733226755063273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71614abd9a1a0ef%3A0x8ba8d26202a02027!2sCentro%20de%20Treinamento%20Resgate%20Pr%C3%A1tico!5e0!3m2!1spt-BR!2sbr!4v1731686523356!5m2!1spt-BR!2sbr" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className='w-3/5 aspect-video md:max-w-5xl border-4 rounded-3xl border-[#a32323]'></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3891.6962696298733!2d-38.311698324148466!3d-12.733226755063273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71614abd9a1a0ef%3A0x8ba8d26202a02027!2sCentro%20de%20Treinamento%20Resgate%20Pr%C3%A1tico!5e0!3m2!1spt-BR!2sbr!4v1731686523356!5m2!1spt-BR!2sbr" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className='w-4/5 aspect-video md:max-w-5xl border-4 rounded-3xl border-[#a32323]'></iframe>
             </div>
 
             {/* Sobre a Empresa */}

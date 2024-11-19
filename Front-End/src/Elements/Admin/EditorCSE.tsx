@@ -77,11 +77,11 @@ export default function EditorCSE() {
                 <h1 className="text-2xl font-black font-['Inter']">{"Editor de Objetos"}</h1>
                 <div className="flex flex-col justify-center items-center w-3/5 bg-gray-200 border border-gray-300 rounded-lg p-4 gap-4">
                     <label htmlFor="nome" className='w-full'>Nome:</label>
-                    <input required={true} value={cse?.nome} type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                    <input required={true} defaultValue={cse?.nome} type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                     <label htmlFor="descricao" className="w-full">Descricao:</label>
-                    <input required={true} value={cse?.descricao} type="text" id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                    <input required={true} defaultValue={cse?.descricao} type="text" id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                     <label htmlFor="linkImagem" className="w-full">Link da imagem de capa:</label>
-                    <input required={true} value={cse?.linkImagem} type="text" id="linkImagem" name="linkImagem" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                    <input required={true} defaultValue={cse?.linkImagem} type="text" id="linkImagem" name="linkImagem" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                     {tipo === 'C' && 
                         <>
                             <label htmlFor="aprendizado" className="w-full">Aprendizados:</label>

@@ -1,4 +1,4 @@
-import {useState } from 'react';
+import {useContext, useState } from 'react';
 import logoPrincipal from '../assets/LogoVector.png';
 import MostrarCSE from '../Elements/Admin/MostrarCSE';
 import AdminAuth from '../api/auth/AdminAuth';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const botao = 'bg-red-700 hover:bg-red-800 hover:scale-105 duration-150 ease-in text-white text-lg font-semibold font-[Inter] rounded-lg px-2 py-2'
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Usuario } from '../App';
 
 const notificacaoSucesso = () => toast.success('Login efetuado com sucesso!', {
     position: "bottom-center",
@@ -32,12 +33,14 @@ const notificacaoErro = () => toast.error('Login ou senha incorretos!', {
 
 function Admin() {
     const [type, setTipo] = useState('C');
-    const [logged, setLogged] = useState(false);
+    const user = useContext(Usuario);
+    const [logged, setLogged] = useState(!user.notLogged());
     return (
-            <div className={`flex flex-col justify-start w-full h-screen font-[Inter] ${logged ? 'gap-8' : 'gap-0'}`}>
+            <div className={`flex flex-col justify-start w-full min-h-screen font-[Inter] ${logged ? 'gap-8' : 'gap-0'}`}>
                 <header className="flex w-full h-fit items-center justify-center p-2 gap-4 bg-[#a42323]">
                     <Link to="/"><img src={logoPrincipal} alt="Logo" className="w-12 h-12" /></Link>
                     <h1 className="text-2xl text-white text-center">PÁGINA DE ADMINISTRAÇÃO</h1>
+                    
                 </header>
                 {!logged && 
                     <div className="w-full h-screen flex bg-gray-300 justify-center">
@@ -50,8 +53,9 @@ function Admin() {
                                 <button className='w-full bg-green-700 hover:bg-green-800 duration-150 ease-in text-white text-lg font-semibold font-[Inter] rounded-lg px-2 py-2' onClick={async () => {
                                     const cpf = (document.getElementById("usuario") as HTMLInputElement).value;
                                     const senha = (document.getElementById("senha") as HTMLInputElement).value;
-                                    AdminAuth(cpf, senha).then((user) => {
-                                        if (user.id) {
+                                    AdminAuth(cpf, senha).then((resp) => {
+                                        if (resp.id) {
+                                            user.login(cpf, senha);
                                             setLogged(true);
                                             notificacaoSucesso();
                                         } else {
@@ -67,6 +71,10 @@ function Admin() {
                     logged && 
                     <>
                         <div className='w-full flex flex-col sm:flex-row justify-center items-center gap-4'>
+                            <button className='flex flex-row w-fit bg-gray-500 justify-center items-center hover:scale-105 duration-150 ease-in text-white text-lg font-semibold font-[Inter] rounded-lg px-2 py-2' onClick={() => {
+                                    user.logout();
+                                    setLogged(false);
+                                }}>Deslogar</button>
                             <button type="button" className={botao} onClick={() => setTipo('C')}>Capacitações</button>
                             <button type="button" className={botao} onClick={() => setTipo('S')}>Serviços</button>
                             <button type="button" className={botao} onClick={() => setTipo('E')}>Equipamentos</button>
@@ -74,6 +82,7 @@ function Admin() {
                         <MostrarCSE tipo={type} />
                     </>
                 }
+                
                 <ToastContainer />
             </div>
     )
