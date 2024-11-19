@@ -28,6 +28,7 @@ export async function criarEquipamento(equipamento: any) {
     if (!response.ok) {
         console.log("Nao foi possivel criar o equipamento! Status de erro: " + response.status);
     }
+    return await response.status;
 }
 
 export async function editarEquipamento(equipamento: any) {
@@ -48,4 +49,5 @@ export async function deletarEquipamento(id: string | undefined) {
     if (!response.ok) {
         console.log("Nao foi possivel deletar o equipamento! Status de erro: " + response.status);
     }
+    return await response.status;
 }

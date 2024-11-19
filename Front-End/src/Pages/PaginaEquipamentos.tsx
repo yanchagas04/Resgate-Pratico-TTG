@@ -6,6 +6,31 @@ import { Equipamento } from '../types/TypesCSE';
 import { useParams } from 'react-router-dom';
 import { pegarEquipamentoId } from '../api/equipamentosAPI';
 import { CSE_Context } from '../App';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notificacaoSucesso = () => toast.success('Adicionado a lista de interesses! Verique sua lista no canto superior direito!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+const notificacaoErro = () => toast.warn('Ja adicionado a lista de interesses!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
 function PaginaEquipamentos() {
     const [equipamento, setEquipamento] = useState<Equipamento>();
@@ -28,7 +53,11 @@ function PaginaEquipamentos() {
             {/* Botão */}
             <button className="p-2.5 bg-gradient-to-r from-[#393939] to-[#393939] rounded-[5px] justify-center items-center gap-2.5 inline-flex h-fit" onClick={() => {
                 if (equipamento !== undefined) {
-                    CSEcontext.addEquipamento(equipamento);
+                    if (CSEcontext.addEquipamento(equipamento) != -1) {
+                        notificacaoSucesso();
+                    } else {
+                        notificacaoErro();
+                    };
                 }
             }}>
                 <div className="text-justify text-white text-base font-semibold font-['Inter'] tracking-tight">Adicionar a lista de equipamentos</div>
@@ -37,6 +66,7 @@ function PaginaEquipamentos() {
         </div>
     </div>
             </div>
+            <ToastContainer />
             <Footer />
         
         </div>

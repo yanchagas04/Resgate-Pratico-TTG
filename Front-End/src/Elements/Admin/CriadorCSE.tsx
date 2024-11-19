@@ -5,6 +5,31 @@ import { criarCurso } from "../../api/cursosAPI";
 import { criarServico } from "../../api/servicosAPI";
 import { criarEquipamento } from "../../api/equipamentosAPI";
 const botao = 'bg-red-700 hover:bg-red-800 hover:scale-105 duration-150 ease-in text-white text-lg font-semibold font-[Inter] rounded-lg px-2 py-2'
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notificacaoSucesso = () => toast.success('Criado com sucesso!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+const notificacaoErro = (response: any) => toast.error(`Erro ao criar! ${response === 400 ? 'Verifique os campos e tente novamente.' : 'Erro no servidor'}`, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
 export default function CriadorCSE() {
     const [type, setTipo] = useState('C');
@@ -51,9 +76,10 @@ export default function CriadorCSE() {
                             <textarea required={true} id="beneficio" name="beneficio" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full h-fit' />
                         </>
                     }
-                    <button className="w-full bg-green-700 hover:bg-green-800 duration-150 ease-in text-white text-lg font-semibold font-['Inter] rounded-lg px-2 py-2" onClick={() => {
+                    <button className="w-full bg-green-700 hover:bg-green-800 duration-150 ease-in text-white text-lg font-semibold font-['Inter] rounded-lg px-2 py-2" onClick={async () => {
+                        let response;
                         if (type === 'C') {
-                            criarCurso({
+                            response = await criarCurso({
                                 nome: (document.getElementById("nome") as HTMLInputElement).value,
                                 descricao: (document.getElementById("descricao") as HTMLInputElement).value,
                                 linkImagem: (document.getElementById("linkImagem") as HTMLInputElement).value,
@@ -61,22 +87,28 @@ export default function CriadorCSE() {
                                 cargaHoraria: (document.getElementById("cargahoraria") as HTMLInputElement).valueAsNumber
                             })
                         } else if (type === 'S') {
-                            criarServico({
+                            response = await criarServico({
                                 nome: (document.getElementById("nome") as HTMLInputElement).value,
                                 descricao: (document.getElementById("descricao") as HTMLInputElement).value,
                                 linkImagem: (document.getElementById("linkImagem") as HTMLInputElement).value,
                                 beneficio: (document.getElementById("beneficio") as HTMLInputElement).value.split("\n")[0] === '' ? [] : (document.getElementById("beneficio") as HTMLInputElement).value.split("\n")
                             });
                         } else if (type === 'E') {
-                            criarEquipamento({
+                            response = await criarEquipamento({
                                 nome: (document.getElementById("nome") as HTMLInputElement).value,
                                 descricao: (document.getElementById("descricao") as HTMLInputElement).value,
                                 linkImagem: (document.getElementById("linkImagem") as HTMLInputElement).value
                             });
                         }
+                        if (response === 201) {
+                            notificacaoSucesso();
+                        } else {
+                            notificacaoErro(response);
+                        }
                     }}>Criar</button>
                 </div>
             </main>
+            <ToastContainer />
         </div>
     );
 }

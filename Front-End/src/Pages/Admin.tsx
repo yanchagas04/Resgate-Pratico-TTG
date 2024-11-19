@@ -4,6 +4,31 @@ import MostrarCSE from '../Elements/Admin/MostrarCSE';
 import AdminAuth from '../api/auth/AdminAuth';
 import { Link } from 'react-router-dom';
 const botao = 'bg-red-700 hover:bg-red-800 hover:scale-105 duration-150 ease-in text-white text-lg font-semibold font-[Inter] rounded-lg px-2 py-2'
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notificacaoSucesso = () => toast.success('Login efetuado com sucesso!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+const notificacaoErro = () => toast.error('Login ou senha incorretos!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
 function Admin() {
     const [type, setTipo] = useState('C');
@@ -28,8 +53,9 @@ function Admin() {
                                     AdminAuth(cpf, senha).then((user) => {
                                         if (user.id) {
                                             setLogged(true);
+                                            notificacaoSucesso();
                                         } else {
-                                            alert('Usuário ou senha incorretos!');
+                                            notificacaoErro();
                                         }
                                     })
                                 }}>Entrar</button>
@@ -48,6 +74,7 @@ function Admin() {
                         <MostrarCSE tipo={type} />
                     </>
                 }
+                <ToastContainer />
             </div>
     )
 }

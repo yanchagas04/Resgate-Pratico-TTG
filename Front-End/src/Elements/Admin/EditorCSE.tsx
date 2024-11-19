@@ -5,6 +5,31 @@ import { editarCurso, pegarCursoId } from "../../api/cursosAPI";
 import { useEffect, useState } from "react";
 import { editarServico, pegarServicoId } from "../../api/servicosAPI";
 import { editarEquipamento, pegarEquipamentoId } from "../../api/equipamentosAPI";
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notificacaoSucesso = () => toast.success('Editado com sucesso!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+const notificacaoErro = (response: any) => toast.error(`Erro ao criar! ${response === 400 ? 'Verifique os campos e tente novamente.' : 'Erro no servidor'}`, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
 export default function EditorCSE() {
     const { tipo, id } = useParams();
@@ -100,13 +125,14 @@ export default function EditorCSE() {
                             });
                         }
                         if (response === 200) {
-                            alert("Objeto editado com sucesso!");
+                            notificacaoSucesso();
                         } else {
-                            alert("Nao foi possivel editar o objeto! Status de erro: " + response);
+                            notificacaoErro(response);
                         }
                     }}>Editar</button>
                 </div>
             </main>
+            <ToastContainer />
         </div>
     );
 }

@@ -24,5 +24,5 @@ export default async function enviarDadosFormulario(dados: dadosFormulario) {
             "equipamento": dados.equipamento
         } as dadosFormulario)
     });
-    return response;
+    return response.status;
 }

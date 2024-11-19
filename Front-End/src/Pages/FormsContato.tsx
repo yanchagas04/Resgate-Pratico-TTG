@@ -4,6 +4,31 @@ import { NavLink } from 'react-router-dom';
 import enviarDadosFormulario, { dadosFormulario } from '../api/contatoAPI';
 import { useContext } from 'react';
 import { CSE_Context } from '../App';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notificacaoSucesso = () => toast.success('Criado com sucesso!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+const notificacaoErro = () => toast.error(`Erro ao criar! Erro no servidor.`, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
 function FormsContato() {
     const CSEcontext = useContext(CSE_Context);
@@ -50,7 +75,12 @@ function FormsContato() {
                             servico: servicos.toString().length === 0 ? "Nenhum serviço solicitado." : servicos.toString(),
                             equipamento: equipamentos.toString().length === 0 ? "Nenhum equipamento solicitado." : equipamentos.toString()
                         }
-                        await enviarDadosFormulario(dados);
+                        const response = await enviarDadosFormulario(dados);
+                        if (response === 200) {
+                            notificacaoSucesso();
+                        } else {
+                            notificacaoErro();
+                        }
                     }}>Enviar</button>
                 </div>
             </div>
@@ -66,6 +96,7 @@ function FormsContato() {
                     </div>
                 </nav>
             </div>
+            <ToastContainer />
         </div>
     )
 }

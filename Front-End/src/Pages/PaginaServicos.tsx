@@ -6,6 +6,31 @@ import { useParams } from 'react-router-dom';
 import { pegarServicoId } from '../api/servicosAPI';
 import { Beneficio, Servico } from '../types/TypesCSE';
 import { CSE_Context } from '../App';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notificacaoSucesso = () => toast.success('Adicionado a lista de interesses! Verique sua lista no canto superior direito!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+const notificacaoErro = () => toast.warn('Ja adicionado a lista de interesses!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
 function PaginaServicos() {
     const [servico, setServico] = useState<Servico>();
@@ -32,7 +57,11 @@ function PaginaServicos() {
             {/* Botão */}
             <button className="p-2.5 bg-gradient-to-r from-[#393939] to-[#393939] rounded-[5px] justify-center items-center gap-2.5 inline-flex" onClick={() => {
                 if (servico !== undefined) {
-                    CSEcontext.addServico(servico);
+                    if (CSEcontext.addServico(servico) != -1) {
+                        notificacaoSucesso();
+                    } else {
+                        notificacaoErro();
+                    }
                 }
             }}>
                 <div className="text-justify text-white text-base font-semibold font-['Inter'] tracking-tight">Adicionar a lista de serviços</div>
@@ -59,6 +88,7 @@ function PaginaServicos() {
                 }
             </div>
             </div>
+            <ToastContainer />
             <Footer />
         
         </div>

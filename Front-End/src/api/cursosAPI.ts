@@ -25,6 +25,7 @@ export async function deletarCurso(id: string | undefined) {
     if (!response.ok) {
         console.log("Não foi possível deletar o curso! Status de Erro: " + response.status);
     }
+    return await response.status;
 }
 
 export async function criarCurso(curso: any) {
@@ -38,6 +39,7 @@ export async function criarCurso(curso: any) {
     if (!response.ok) {
         console.log("Não foi possível criar o curso! Status de Erro: " + response.status);
     }
+    return await response.status;
 }
 
 export async function editarCurso(curso: any) {

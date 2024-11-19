@@ -41,7 +41,7 @@ function MostrarCSE(props: MostrarCSEProps){
                 <button type="button" className='bg-red-700 hover:bg-red-800 flex justify-center items-center hover:scale-105 duration-150 ease-in text-white text-7xl text-center font-semibold font-[Inter] rounded-full w-32 h-32'>+</button>
             </Link>
         {
-            conteudo.length > 0 && <>{conteudo.map(element => <EditableCardCSE key={element.id} nome={nomeConteudo + " " + element.nome} descricao={element.descricao} imagem={element.linkImagem} id={element.id} tipo={props.tipo}/>)}</>
+            conteudo.length > 0 && <>{conteudo.map(element => <EditableCardCSE key={element.id} nome={element.nome} descricao={element.descricao} imagem={element.linkImagem} id={element.id} tipo={props.tipo}/>)}</>
         }
         </div>
     )

@@ -6,6 +6,31 @@ import { pegarCursoId } from '../api/cursosAPI';
 import { Aprendizado, Curso } from '../types/TypesCSE';
 import { useContext, useEffect, useState } from 'react';
 import { CSE_Context } from '../App';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const notificacaoSucesso = () => toast.success('Adicionado a lista de interesses! Verique sua lista no canto superior direito!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+const notificacaoErro = () => toast.warn('Ja adicionado a lista de interesses!', {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
 
 function PaginaCursos(){
     const CSEcontext = useContext(CSE_Context);
@@ -35,13 +60,18 @@ function PaginaCursos(){
         <div className="flex-col justify-center items-center gap-[25px] inline-flex">
             <img className="h-[350px] aspect-square" src={curso?.linkImagem} />
             {/* Botão */}
-            <button className="p-2.5 bg-gradient-to-r from-[#393939] to-[#393939] rounded-[5px] justify-center items-center gap-2.5 inline-flex" onClick={() => {
+            <button id='adicionar' className="p-2.5 active:bg-green-600 bg-[#393939] rounded-[5px] justify-center items-center gap-2.5 inline-flex" onClick={() => {
                 if (curso !== undefined) {
-                    CSEcontext.addCurso(curso);
+                    if (CSEcontext.addCurso(curso) != -1) {
+                        notificacaoSucesso();
+                    } else {
+                        notificacaoErro();
+                    };
+
                 }
             }}>
                 <div className="text-justify text-white text-base font-semibold font-['Inter'] tracking-tight">Adicionar a lista de capacitações</div>
-                <img className="w-5 h-5" src={icone} />
+                <img id='iconeAdd' className="w-5 h-5" src={icone} />
             </button>
         </div>
     </div>
@@ -63,6 +93,7 @@ function PaginaCursos(){
         </div>
         
         </div>
+        <ToastContainer />
             <Footer />
 
     </div>

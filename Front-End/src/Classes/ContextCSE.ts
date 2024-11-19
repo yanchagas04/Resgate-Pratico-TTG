@@ -17,19 +17,19 @@ class ContextCSE {
 
     //ADD
     addCurso(curso: Curso) {
-        if (this.cursos.find((c) => c.id === curso.id) !== undefined) return;
+        if (this.cursos.find((c) => c.id === curso.id) !== undefined) return -1;
         this.cursos.push(curso);
         this.atualizarLocalStorage();
     }
 
     addEquipamento(equipamento: Equipamento) {
-        if (this.equipamentos.find((e) => e.id === equipamento.id) !== undefined) return;
+        if (this.equipamentos.find((e) => e.id === equipamento.id) !== undefined) return -1;
         this.equipamentos.push(equipamento);
         this.atualizarLocalStorage();
     }
 
     addServico(servico: Servico) {
-        if (this.servicos.find((s) => s.id === servico.id) !== undefined) return;
+        if (this.servicos.find((s) => s.id === servico.id) !== undefined) return -1;
         this.servicos.push(servico);
         this.atualizarLocalStorage();
     }

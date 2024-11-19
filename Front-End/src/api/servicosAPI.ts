@@ -28,6 +28,7 @@ export async function criarServico(servico: any) {
     if (!response.ok) {
         console.log("Nao foi possivel criar o servico! Status de erro: " + response.status);
     }
+    return await response.status;
 }
 
 export async function editarServico(servico: any) {
@@ -48,4 +49,5 @@ export async function deletarServico(id: string | undefined) {
     if (!response.ok) {
         console.log("Nao foi possivel deletar o servico! Status de erro: " + response.status);
     }
+    return await response.status;
 }
