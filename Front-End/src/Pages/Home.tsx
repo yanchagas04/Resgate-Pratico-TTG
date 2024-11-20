@@ -2,7 +2,6 @@ import imgPrincipal from '../assets/principal.png';
 import Header from '../Elements/Header';
 import Footer from '../Elements/Footer';
 import CardDivisao from '../Elements/CardDivisao';
-import CarroselOficial from '../Elements/Carrosel';
 import Sobre from '../Elements/Sobre';
 import logo from '../assets/logoVector.png';
 import Feedbacks from '../Elements/Feedbacks';

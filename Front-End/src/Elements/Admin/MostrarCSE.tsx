@@ -36,14 +36,21 @@ function MostrarCSE(props: MostrarCSEProps){
         }
     }, [conteudo]);
     return (
-        <div className="flex flex-wrap justify-center items-center gap-4 px-8">
-            <Link to={'/admin/criador'}>
-                <button type="button" className='bg-red-700 hover:bg-red-800 flex justify-center items-center hover:scale-105 duration-150 ease-in text-white text-7xl text-center font-semibold font-[Inter] rounded-full w-32 h-32'>+</button>
-            </Link>
-        {
-            conteudo.length > 0 && <>{conteudo.map(element => <EditableCardCSE key={element.id} nome={element.nome} descricao={element.descricao} imagem={element.linkImagem} id={element.id} tipo={props.tipo}/>)}</>
-        }
-        </div>
+        <>
+            {
+                conteudo.length === undefined && <div className="flex flex-col justify-center items-center gap-4 px-8">
+                    <p className="text-3xl font-[Inter] font-bold">Nenhum {nomeConteudo} encontrado</p>
+                </div>
+            }
+            <div className="flex flex-wrap justify-center items-center gap-4 px-8">
+                <Link to={'/admin/criador'}>
+                    <button type="button" className='bg-red-700 hover:bg-red-800 flex justify-center items-center hover:scale-105 duration-150 ease-in text-white text-7xl text-center font-semibold font-[Inter] rounded-full w-32 h-32'>+</button>
+                </Link>
+            {
+                conteudo.length > 0 && <>{conteudo.map(element => <EditableCardCSE key={element.id} nome={element.nome} descricao={element.descricao} imagem={element.linkImagem} id={element.id} tipo={props.tipo}/>)}</>
+            }
+            </div>
+        </>
     )
 }
 

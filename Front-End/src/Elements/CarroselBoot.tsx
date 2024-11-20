@@ -49,7 +49,16 @@ export default function CarroselBoot(props: carroselProps) {
             })
         }
     }, [conteudo]);
+    if (conteudo.length === undefined) {
+        const content = props.tipo === 'C' ? 'Curso' : props.tipo === 'S' ? 'Serviço' : 'Equipamento';
+        return (
+            <div className="flex flex-col justify-center items-center gap-4 px-8">
+                <p className="text-3xl font-[Inter] font-bold">Nenhum {content} encontrado</p>
+            </div>
+        )
+    }
     return (
+        
         <Carousel
             swipeable={false}
             draggable={false}

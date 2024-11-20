@@ -24,7 +24,7 @@ function PaginaGeralCursos(){
                     cursos.length > 0 &&
                     cursos?.map((curso) => (<CardCSE key={curso.id} id={curso.id} nome={curso.nome} descricao={curso.descricao} imagem={curso.linkImagem} tipo="C"/>))}
                     {
-                        cursos.length === 0 &&
+                        cursos.length === undefined &&
                         <h1 className='text-gray-950 font-[Inter] text-2xl p-2 font-bold'>Nenhum curso encontrado :(</h1>
                     }
                 </div>

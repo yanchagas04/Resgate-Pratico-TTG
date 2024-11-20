@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '../assets/logoVector.png';
 import FourStars from '../assets/4Stars.png';
 import FiveStars from '../assets/5Stars.png';

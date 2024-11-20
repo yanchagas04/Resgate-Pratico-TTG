@@ -3,17 +3,11 @@ import { ENDERECO_BACKEND } from './ENDERECO';
 
 export async function pegarServicos() {
     const response = await fetch(ENDERECO_BACKEND + "/servicos");
-    if (!response.ok) {
-        console.log("Nao foi possivel pegar os servicos! Status de erro: " + response.status);
-    }
     return await response.json() as Servico[];
 }
 
 export async function pegarServicoId(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/servicos/" + id);
-    if (!response.ok) {
-        console.log("Nao foi possivel pegar o servico! Status de erro: " + response.status);
-    }
     return await response.json() as Servico;
 }
 
@@ -25,9 +19,6 @@ export async function criarServico(servico: any) {
         },
         body: JSON.stringify(servico)
     });
-    if (!response.ok) {
-        console.log("Nao foi possivel criar o servico! Status de erro: " + response.status);
-    }
     return await response.status;
 }
 
@@ -46,8 +37,5 @@ export async function deletarServico(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/servicos/" + id, {
         method: "DELETE"
     });
-    if (!response.ok) {
-        console.log("Nao foi possivel deletar o servico! Status de erro: " + response.status);
-    }
     return await response.status;
 }

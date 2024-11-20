@@ -433,7 +433,7 @@ app.post('/admin/login', async (req, res) => {
     try {
         const user = await prisma.adminUsers.findUnique({
             where: {
-                cpf: req.body.cpf
+                nome: req.body.nome
             }
         });
         if (user) {

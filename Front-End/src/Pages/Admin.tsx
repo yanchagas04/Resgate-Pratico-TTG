@@ -51,11 +51,11 @@ function Admin() {
                                 <label htmlFor="senha" className="w-full text-left">Senha</label>
                                 <input type="password" id="senha" name="senha" className='w-full bg-gray-200 border border-gray-300 rounded-md p-2' />
                                 <button className='w-full bg-green-700 hover:bg-green-800 duration-150 ease-in text-white text-lg font-semibold font-[Inter] rounded-lg px-2 py-2' onClick={async () => {
-                                    const cpf = (document.getElementById("usuario") as HTMLInputElement).value;
+                                    const nome = (document.getElementById("usuario") as HTMLInputElement).value;
                                     const senha = (document.getElementById("senha") as HTMLInputElement).value;
-                                    AdminAuth(cpf, senha).then((resp) => {
+                                    AdminAuth(nome, senha).then((resp) => {
                                         if (resp.id) {
-                                            user.login(cpf, senha);
+                                            user.login(nome, senha);
                                             setLogged(true);
                                             notificacaoSucesso();
                                         } else {

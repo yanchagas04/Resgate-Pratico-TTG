@@ -25,9 +25,6 @@ export async function criarEquipamento(equipamento: any) {
         },
         body: JSON.stringify(equipamento)
     });
-    if (!response.ok) {
-        console.log("Nao foi possivel criar o equipamento! Status de erro: " + response.status);
-    }
     return await response.status;
 }
 
@@ -46,8 +43,5 @@ export async function deletarEquipamento(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/equipamentos/" + id, {
         method: "DELETE"
     });
-    if (!response.ok) {
-        console.log("Nao foi possivel deletar o equipamento! Status de erro: " + response.status);
-    }
     return await response.status;
 }
