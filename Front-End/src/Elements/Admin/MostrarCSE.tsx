@@ -43,7 +43,7 @@ function MostrarCSE(props: MostrarCSEProps){
                 </div>
             }
             <div className="flex flex-wrap justify-center items-center gap-4 px-8">
-                <Link to={'/admin/criador'}>
+                <Link to={'/admin/criador/' + props.tipo}>
                     <button type="button" className='bg-red-700 hover:bg-red-800 flex justify-center items-center hover:scale-105 duration-150 ease-in text-white text-7xl text-center font-semibold font-[Inter] rounded-full w-32 h-32'>+</button>
                 </Link>
             {

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import logoPrincipal from '../../assets/LogoVector.png';
 import { useState } from "react";
 import { criarCurso } from "../../api/cursosAPI";
@@ -32,7 +32,7 @@ const notificacaoErro = (response: any) => toast.error(`Erro ao criar! ${respons
     });
 
 export default function CriadorCSE() {
-    const [type, setTipo] = useState('C');
+    const [type, setTipo] = useState(useParams().tipo);
     const tipo = type === 'C' ? 'Capacitações' : type === 'S' ? 'Serviços' : 'Equipamentos';
     return (
         <div className="flex flex-col justify-start w-full h-screen font-['Inter'] gap-4">
@@ -58,7 +58,7 @@ export default function CriadorCSE() {
                     <label htmlFor="nome" className='w-full'>Nome:</label>
                     <input required={true}  type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                     <label htmlFor="descricao" className="w-full">Descricao:</label>
-                    <input required={true} type="text" id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                    <textarea required={true} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                     <label htmlFor="linkImagem" className="w-full">Link da imagem de capa:</label>
                     <input required={true} type="text" id="linkImagem" name="linkImagem" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                     {type === 'C' && 
