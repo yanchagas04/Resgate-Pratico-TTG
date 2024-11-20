@@ -7,6 +7,7 @@ import Sobre from '../Elements/Sobre';
 import logo from '../assets/logoVector.png';
 import Feedbacks from '../Elements/Feedbacks';
 import { useEffect, useState } from 'react';
+import CarroselBoot from '../Elements/CarroselBoot';
 
 
 function Home(){
@@ -77,7 +78,11 @@ function Home(){
                 </div>
                 <p className="text-[#666666] font-normal text-lg">Conheça as principais capacitações que oferecemos!</p>
             </div>
-            <CarroselOficial tipo='C'/>
+            <div className='w-full flex justify-center items-center'>
+                <div className='w-full max-w-[1200px] sm:w-4/5 py-8 px-16'>
+                    <CarroselBoot tipo='C'/>
+                </div>
+            </div>
 
             {/* carrosel servicos */}
             <div className="flex flex-col text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4 px-4">
@@ -89,7 +94,11 @@ function Home(){
                 </div>
                 <p className="text-[#666666] font-normal text-lg">Conheça os principais serviços que oferecemos!</p>
             </div>
-            <CarroselOficial tipo='S'/>
+            <div className='w-full flex justify-center items-center'>
+                <div className='w-full max-w-[1200px] sm:w-4/5 py-8 px-16'>
+                    <CarroselBoot tipo='S'/>
+                </div>
+            </div>
 
             <div className="flex flex-col justify-center items-center text-center text-black text-4xl font-semibold font-['Inter'] pt-20 tracking-wide gap-4 px-4">
                 <p>ONDE ESTAMOS</p>
