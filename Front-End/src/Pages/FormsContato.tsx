@@ -7,7 +7,7 @@ import { CSE_Context } from '../App';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const notificacaoSucesso = () => toast.success('Criado com sucesso!', {
+const notificacaoSucesso = () => toast.success('Solicitação enviada com sucesso!', {
     position: "bottom-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -18,7 +18,7 @@ const notificacaoSucesso = () => toast.success('Criado com sucesso!', {
     theme: "light",
     transition: Bounce,
     });
-const notificacaoErro = () => toast.error(`Erro ao criar! Erro no servidor.`, {
+const notificacaoErro = () => toast.error(`Erro ao enviar solicitação! Erro no servidor.`, {
     position: "bottom-center",
     autoClose: 5000,
     hideProgressBar: false,
