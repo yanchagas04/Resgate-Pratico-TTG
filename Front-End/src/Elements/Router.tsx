@@ -12,6 +12,7 @@ import ListaDeInteresse from '../Pages/ListaDeInteresse';
 import NotFoundPage from '../Pages/NotFoundPage';
 import CriadorCSE from './Admin/CriadorCSE';
 import EditorCSE from './Admin/EditorCSE';
+import PaginaEbook from '../Pages/PaginaEbook';
 
 function Router() {
     return (
@@ -29,6 +30,7 @@ function Router() {
                     <Route path="/servico/:id" element={<PaginaServicos/>} />
                     <Route path="/equipamento/:id" element={<PaginaEquipamentos />} />
                     <Route path="/listaDeInteresse" element={<ListaDeInteresse />} />
+                    <Route path="/ebooks" element={<PaginaEbook />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
         </BrowserRouter>

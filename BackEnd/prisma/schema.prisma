@@ -52,3 +52,10 @@ model Beneficio {
   servicoId String
   Servico   Servico @relation(fields: [servicoId], references: [id])
 }
+
+model Ebook {
+  id String @id @default(uuid())
+  nome String
+  descricao String
+  linkDownload String
+}

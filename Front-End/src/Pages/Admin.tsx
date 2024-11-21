@@ -78,6 +78,7 @@ function Admin() {
                             <button type="button" className={botao} onClick={() => setTipo('C')}>Capacitações</button>
                             <button type="button" className={botao} onClick={() => setTipo('S')}>Serviços</button>
                             <button type="button" className={botao} onClick={() => setTipo('E')}>Equipamentos</button>
+                            <button type="button" className={botao} onClick={() => setTipo('EB')}>Ebooks</button>
                         </div>
                         <MostrarCSE tipo={type} />
                     </>

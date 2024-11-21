@@ -34,3 +34,10 @@ export type Equipamento = {
     id: string,
     tipo: string,
 }
+
+export type Ebook = {
+    id: string,
+    nome: string,
+    descricao: string,
+    linkDownload: string
+}

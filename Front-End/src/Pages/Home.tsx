@@ -49,7 +49,7 @@ function Home(){
             </div>
 
             {/* Cards */}
-            <div className="relative w-full flex flex-col xl:flex-row justify-center items-center gap-24 mt-6 md:mt-[-150px]">
+            <div className="relative w-full flex flex-wrap xl:flex-row justify-center items-center gap-24 mt-6 md:mt-[-150px]">
             <CardDivisao
                 nome="Equipamentos"
                 descricao="Conheça nossos equipamentos de proteção individual e coletiva"

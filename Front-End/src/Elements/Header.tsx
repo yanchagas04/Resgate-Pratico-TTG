@@ -30,7 +30,7 @@ function Header() {
             <NavLink to = "/contato">CONTATO</NavLink>
           </li>
           <li className="text-center text-white text-md font-semibold font-['Inter']">
-            <a href="#">EBOOK</a>
+            <NavLink to = "/ebooks">EBOOK</NavLink>
           </li>
           <li className="text-center text-white text-md font-semibold font-['Inter']">
             <NavLink to = "/listaDeInteresse">

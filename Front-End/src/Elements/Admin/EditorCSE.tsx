@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Curso, Equipamento, Servico } from "../../types/TypesCSE";
+import { Curso, Ebook, Equipamento, Servico } from "../../types/TypesCSE";
 import logoPrincipal from '../../assets/LogoVector.png';
 import { editarCurso, pegarCursoId } from "../../api/cursosAPI";
 import { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import { editarServico, pegarServicoId } from "../../api/servicosAPI";
 import { editarEquipamento, pegarEquipamentoId } from "../../api/equipamentosAPI";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { editarEbook, pegarEbookId } from "../../api/ebookAPI";
 
 const notificacaoSucesso = () => toast.success('Editado com sucesso!', {
     position: "bottom-center",
@@ -34,6 +35,7 @@ const notificacaoErro = (response: any) => toast.error(`Erro ao criar! ${respons
 export default function EditorCSE() {
     const { tipo, id } = useParams();
     const [cse, setCSE] = useState<Curso | Servico | Equipamento>();
+    const [ebook, setEbook] = useState<Ebook>();
     const [aprendizados, setAprendizado] = useState<string>("");
     const [beneficios, setBeneficio] = useState<string>("");
     const [cargaHoraria, setCargaHoraria] = useState<number>();
@@ -56,8 +58,10 @@ export default function EditorCSE() {
             });
         } else if (tipo === 'E') {
             pegarEquipamentoId(id).then((value) => setCSE(value));
+        } else if (tipo === 'EB') {
+            pegarEbookId(id).then((value) => setEbook(value));
         }
-    }, [cse, aprendizados, beneficios]);
+    }, [cse, aprendizados, beneficios, ebook]);
     return (
         <div className="flex flex-col justify-start w-full h-screen font-['Inter'] gap-4">
             <header className="flex w-full h-fit items-center justify-center p-2 gap-4 bg-[#a42323]">
@@ -76,12 +80,27 @@ export default function EditorCSE() {
                 </div>
                 <h1 className="text-2xl font-black font-['Inter']">{"Editor de Objetos"}</h1>
                 <div className="flex flex-col justify-center items-center w-3/5 bg-gray-200 border border-gray-300 rounded-lg p-4 gap-4">
-                    <label htmlFor="nome" className='w-full'>Nome:</label>
-                    <input required={true} defaultValue={cse?.nome} type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
-                    <label htmlFor="descricao" className="w-full">Descricao:</label>
-                    <textarea required={true} defaultValue={cse?.descricao} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
-                    <label htmlFor="linkImagem" className="w-full">Link da imagem de capa:</label>
-                    <input required={true} defaultValue={cse?.linkImagem} type="text" id="linkImagem" name="linkImagem" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                    {
+                        tipo === 'EB' && <>
+                            <label htmlFor="nome" className='w-full'>Nome:</label>
+                            <input required={true} defaultValue={ebook?.nome} type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="descricao" className="w-full">Descricao:</label>
+                            <textarea required={true} defaultValue={ebook?.descricao} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="linkDownload" className="w-full">Link da imagem de capa:</label>
+                            <input required={true} defaultValue={ebook?.linkDownload} type="text" id="linkDownload" name="linkDownload" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                        </>
+                    }
+                    {
+                        tipo !== 'EB' && 
+                        <>
+                            <label htmlFor="nome" className='w-full'>Nome:</label>
+                            <input required={true} defaultValue={cse?.nome} type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="descricao" className="w-full">Descricao:</label>
+                            <textarea required={true} defaultValue={cse?.descricao} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="linkImagem" className="w-full">Link da imagem de capa:</label>
+                            <input required={true} defaultValue={cse?.linkImagem} type="text" id="linkImagem" name="linkImagem" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                        </>
+                    }
                     {tipo === 'C' && 
                         <>
                             <label htmlFor="aprendizado" className="w-full">Aprendizados:</label>
@@ -122,6 +141,13 @@ export default function EditorCSE() {
                                 nome: (document.getElementById("nome") as HTMLInputElement).value,
                                 descricao: (document.getElementById("descricao") as HTMLInputElement).value,
                                 linkImagem: (document.getElementById("linkImagem") as HTMLInputElement).value
+                            });
+                        } else if (tipo === 'EB') {
+                            response = await editarEbook({
+                                id: id as string,
+                                nome: (document.getElementById("nome") as HTMLInputElement).value,
+                                descricao: (document.getElementById("descricao") as HTMLInputElement).value,
+                                linkDownload: (document.getElementById("linkDownload") as HTMLInputElement).value
                             });
                         }
                         if (response === 200) {

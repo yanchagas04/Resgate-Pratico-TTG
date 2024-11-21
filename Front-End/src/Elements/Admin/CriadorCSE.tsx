@@ -33,7 +33,7 @@ const notificacaoErro = (response: any) => toast.error(`Erro ao criar! ${respons
 
 export default function CriadorCSE() {
     const [type, setTipo] = useState(useParams().tipo);
-    const tipo = type === 'C' ? 'Capacitações' : type === 'S' ? 'Serviços' : 'Equipamentos';
+    const tipo = type === 'C' ? 'Capacitações' : type === 'S' ? 'Serviços' : type === 'E' ? 'Equipamentos' : 'Ebooks';
     return (
         <div className="flex flex-col justify-start w-full h-screen font-['Inter'] gap-4">
             <header className="flex w-full h-fit items-center justify-center p-2 gap-4 bg-[#a42323]">

@@ -503,3 +503,67 @@ app.post('/contato', async (req, res) => {
         res.status(500).json({ error: "Erro do servidor" });
     }
 })
+
+app.get('/ebooks', async (req, res) => {
+    try {
+        const ebooks = await prisma.ebook.findMany();
+        if (ebooks.length > 0) 
+            res.status(200).json(ebooks);
+        else
+            res.status(404).json({ message: 'Nenhum ebook encontrado' });
+    } catch (error) {
+        //console.log(error);
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+})
+
+app.post('/ebooks', async (req, res) => {
+    try {
+        const ebook = await prisma.ebook.create({
+            data: {
+                nome: req.body.nome,
+                descricacao: req.body.descricao,
+                linkDownload: req.body.linkDownload
+            }
+        })
+        res.status(201).json(ebook);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+})
+
+app.put('/ebooks/:id', async (req, res) => {
+    try {
+        const ebook = await prisma.ebook.update({
+            where: { id: req.params.id },
+            data: {
+                nome: req.body.nome,
+                descricacao: req.body.descricao,
+                linkDownload: req.body.linkDownload
+            }
+        })
+        res.status(200).json(ebook);
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "Os dados enviados são inválidos"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+});
+
+app.delete('/ebooks/:id', async (req, res) => {
+    try {
+        await prisma.ebook.delete({
+            where: { id: req.params.id }
+        });
+        res.status(204).send();
+    } catch (error) {
+        if (error instanceof Prisma.PrismaClientValidationError) {
+            res.status(400).json({ error: "O id enviado é inválido"});
+        }
+        res.status(500).json({ error: "Erro do servidor"});
+    }
+})
