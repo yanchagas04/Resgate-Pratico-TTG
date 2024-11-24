@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Curso, Ebook, Equipamento, Servico } from "../../types/TypesCSE";
 import logoPrincipal from '../../assets/LogoVector.png';
 import { editarCurso, pegarCursoId } from "../../api/cursosAPI";
@@ -86,7 +86,7 @@ export default function EditorCSE() {
                             <input required={true} defaultValue={ebook?.nome} type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                             <label htmlFor="descricao" className="w-full">Descricao:</label>
                             <textarea required={true} defaultValue={ebook?.descricao} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
-                            <label htmlFor="linkDownload" className="w-full">Link da imagem de capa:</label>
+                            <label htmlFor="linkDownload" className="w-full">Link para dowload:</label>
                             <input required={true} defaultValue={ebook?.linkDownload} type="text" id="linkDownload" name="linkDownload" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
                         </>
                     }

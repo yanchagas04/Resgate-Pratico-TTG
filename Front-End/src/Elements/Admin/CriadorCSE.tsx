@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import logoPrincipal from '../../assets/LogoVector.png';
 import { useState } from "react";
 import { criarCurso } from "../../api/cursosAPI";
@@ -7,6 +7,7 @@ import { criarEquipamento } from "../../api/equipamentosAPI";
 const botao = 'bg-red-700 hover:bg-red-800 hover:scale-105 duration-150 ease-in text-white text-lg font-semibold font-[Inter] rounded-lg px-2 py-2'
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { criarEbook } from "../../api/ebookAPI";
 
 const notificacaoSucesso = () => toast.success('Criado com sucesso!', {
     position: "bottom-center",
@@ -52,15 +53,32 @@ export default function CriadorCSE() {
                     <button type="button" className={botao} onClick={() => setTipo('C')}>Capacitações</button>
                     <button type="button" className={botao} onClick={() => setTipo('S')}>Serviços</button>
                     <button type="button" className={botao} onClick={() => setTipo('E')}>Equipamentos</button>
+                    <button type="button" className={botao} onClick={() => setTipo('EB')}>Ebooks</button>
                 </div>
                 <h1 className="text-2xl font-black font-['Inter']">{"Criador de " + tipo}</h1>
                 <div className="flex flex-col justify-center items-center w-3/5 bg-gray-200 border border-gray-300 rounded-lg p-4 gap-4">
-                    <label htmlFor="nome" className='w-full'>Nome:</label>
-                    <input required={true}  type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
-                    <label htmlFor="descricao" className="w-full">Descricao:</label>
-                    <textarea required={true} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
-                    <label htmlFor="linkImagem" className="w-full">Link da imagem de capa:</label>
-                    <input required={true} type="text" id="linkImagem" name="linkImagem" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                    {
+                        type === 'EB' &&
+                        <>
+                            <label htmlFor="nome" className='w-full'>Nome:</label>
+                            <input required={true}  type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="descricao" className="w-full">Descricao:</label>
+                            <textarea required={true} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="linkDownload" className="w-full">Link para dowload:</label>
+                            <input required={true} type="text" id="linkDownload" name="linkDownload" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                        </>
+                    }
+                    {
+                        type !== 'EB' &&
+                        <>
+                            <label htmlFor="nome" className='w-full'>Nome:</label>
+                            <input required={true}  type="text" id="nome" name="nome" className=' bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="descricao" className="w-full">Descricao:</label>
+                            <textarea required={true} id="descricao" name="descricao" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                            <label htmlFor="linkImagem" className="w-full">Link para imagem de capa:</label>
+                            <input required={true} type="text" id="linkImagem" name="linkImagem" className='bg-gray-100 border border-gray-300 rounded-md p-2 w-full' />
+                        </>
+                    }
                     {type === 'C' && 
                         <>
                             <label htmlFor="aprendizado" className="w-full">Aprendizados:</label>
@@ -99,6 +117,12 @@ export default function CriadorCSE() {
                                 descricao: (document.getElementById("descricao") as HTMLInputElement).value,
                                 linkImagem: (document.getElementById("linkImagem") as HTMLInputElement).value
                             });
+                        } else if (type === 'EB') {
+                            response = await criarEbook({
+                                nome: (document.getElementById("nome") as HTMLInputElement).value,
+                                descricao: (document.getElementById("descricao") as HTMLInputElement).value,
+                                linkDownload: (document.getElementById("linkDownload") as HTMLInputElement).value
+                            })
                         }
                         if (response === 201) {
                             notificacaoSucesso();

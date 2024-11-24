@@ -3,17 +3,11 @@ import { ENDERECO_BACKEND } from "./ENDERECO";
 
 export async function pegarEquipamentos() {
     const response = await fetch(ENDERECO_BACKEND + "/equipamentos");
-    if (!response.ok) {
-        console.log("Nao foi possivel pegar os equipamentos! Status de erro: " + response.status);
-    }
     return await response.json() as Equipamento[];
 }
 
 export async function pegarEquipamentoId(id: string | undefined) {
     const response = await fetch(ENDERECO_BACKEND + "/equipamentos/" + id);
-    if (!response.ok) {
-        console.log("Nao foi possivel pegar o equipamento! Status de erro: " + response.status);
-    }
     return await response.json() as Equipamento;
 }
 

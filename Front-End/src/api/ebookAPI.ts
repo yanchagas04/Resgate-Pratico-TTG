@@ -8,7 +8,6 @@ export async function pegarEbooks() {
 
 export async function pegarEbookId(id: string | undefined) {
     const response = await fetch( ENDERECO_BACKEND + '/ebooks/' + id);
-    console.log(response);
     return await response.json() as Ebook;
 }
 
@@ -19,7 +18,7 @@ export async function deletarEbook(id: string | undefined) {
     return await response.status;
 }
 
-export async function criarEbook(ebook: Ebook) {
+export async function criarEbook(ebook: any) {
     const response = await fetch( ENDERECO_BACKEND + '/ebooks', {
         method: "POST",
         headers: {
@@ -34,13 +33,14 @@ export async function criarEbook(ebook: Ebook) {
     return await response.status;
 }
 
-export async function editarEbook(ebook: Ebook) {
+export async function editarEbook(ebook: any) {
     const response = await fetch( ENDERECO_BACKEND + '/ebooks/' + ebook.id, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
+            id: ebook.id,
             nome: ebook.nome,
             descricao: ebook.descricao,
             linkDownload: ebook.linkDownload

@@ -517,12 +517,26 @@ app.get('/ebooks', async (req, res) => {
     }
 })
 
+app.get('/ebooks/:id', async (req, res) => {
+    try {
+        const ebook = await prisma.ebook.findUnique({
+            where: { id: req.params.id }
+        });
+        if (ebook) 
+            res.status(200).json(ebook);
+        else
+            res.status(404).json({ message: 'Ebook nao encontrado' });
+    } catch (error) {
+        res.status(500).json({ error: "Erro do servidor" });
+    }
+})
+
 app.post('/ebooks', async (req, res) => {
     try {
         const ebook = await prisma.ebook.create({
             data: {
                 nome: req.body.nome,
-                descricacao: req.body.descricao,
+                descricao: req.body.descricao,
                 linkDownload: req.body.linkDownload
             }
         })
@@ -541,7 +555,7 @@ app.put('/ebooks/:id', async (req, res) => {
             where: { id: req.params.id },
             data: {
                 nome: req.body.nome,
-                descricacao: req.body.descricao,
+                descricao: req.body.descricao,
                 linkDownload: req.body.linkDownload
             }
         })
