@@ -542,6 +542,7 @@ app.post('/ebooks', async (req, res) => {
         })
         res.status(201).json(ebook);
     } catch (error) {
+        console.log(error);
         if (error instanceof Prisma.PrismaClientValidationError) {
             res.status(400).json({ error: "Os dados enviados são inválidos"});
         }

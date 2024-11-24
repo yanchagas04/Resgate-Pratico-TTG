@@ -152,6 +152,7 @@ export default function EditorCSE() {
                         }
                         if (response === 200) {
                             notificacaoSucesso();
+                            <Navigate to="/admin" />
                         } else {
                             notificacaoErro(response);
                         }

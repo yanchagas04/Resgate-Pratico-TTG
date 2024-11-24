@@ -23,27 +23,31 @@ function MostrarCSE(props: MostrarCSEProps){
             pegarCursos().then((response)=>{
                 let cursosArray : Curso[] = response;
                 setConteudo(cursosArray);
+                setConteudoEbook([]);
             });
         } else if(props.tipo === 'S'){
             setNomeConteudo('Serviço');
             pegarServicos().then((response)=>{
                 let servicosArray : Servico[] = response;
                 setConteudo(servicosArray);
+                setConteudoEbook([]);
             })
         } else if(props.tipo === 'E'){
             setNomeConteudo('Equipamento');
             pegarEquipamentos().then((response)=>{
                 let equipamentosArray : Equipamento[] = response;
                 setConteudo(equipamentosArray);
+                setConteudoEbook([]);
             })
         } else if (props.tipo === 'EB'){
             setNomeConteudo('Ebook');
             pegarEbooks().then((response)=>{
                 let ebooksArray : Ebook[] = response;
+                setConteudo([]);
                 setConteudoEbook(ebooksArray);
             })
         }
-    }, [conteudo]);
+    }, [conteudo, conteudoEbook]);
     return (
         <>
             {

@@ -126,6 +126,7 @@ export default function CriadorCSE() {
                         }
                         if (response === 201) {
                             notificacaoSucesso();
+                            <Navigate to="/admin" />
                         } else {
                             notificacaoErro(response);
                         }
